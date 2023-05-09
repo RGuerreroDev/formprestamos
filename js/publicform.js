@@ -12,10 +12,16 @@ async function fnSubmit(event)
     
     const firma = document.querySelector("#canvasFirma").toDataURL("image/png");
     
-    const formData = new FormData();
+    const formData = new FormData($formPrestamo);
     formData.append("imagen", firma);
 
-
+    await fetch("procs/formsubmit.php", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
 }
 
 //-----------------------------------------------
