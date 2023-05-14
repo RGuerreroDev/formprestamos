@@ -1,12 +1,12 @@
 
     </div><!-- container -->
     
-    <script src="./libs/jquery-3.6.4/jquery-3.6.4.min.js"></script>
-    <script src="./libs/bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
-    <!--script src="./libs/bootstrap-table-1.21.0-dist/bootstrap-table.min.js"></script>
-    <script src="./libs/bootstrap-table-1.21.0-dist/locale/bootstrap-table-es-ES.min.js"></script>
-    <script src="./libs/jQueryTableExport/tableExport.min.js"></script>
-    <script src="./libs/bootstrap-table-1.21.0-dist/extensions/export/bootstrap-table-export.min.js"></script-->
+    <script src="./libs/jquery/jquery.min.js"></script>
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./libs/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="./libs/bootstrap-table/locale/bootstrap-table-es-ES.min.js"></script>
+    <!--script src="./libs/jQueryTableExport/tableExport.min.js"></script-->
+    <!--script src="./libs/bootstrap-table-1.21.0-dist/extensions/export/bootstrap-table-export.min.js"></script-->
     <script src="./js/main.js"></script>
 <?php
 

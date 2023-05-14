@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= APP_TITULO ?></title>
+    <title>
+        <?= APP_TITULO ?>
+    </title>
 
-    <link rel="stylesheet" href="../libs/bootstrap-5.3.0-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../libs/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../libs/bootstrap-icons/font/bootstrap-icons.min.css">
 </head>
+
 <body>
 
     <section class="py-4 py-xl-5">
@@ -19,36 +23,67 @@
                         <div class="card-body p-sm-5">
                             <h2 class="text-center mb-4">Formulario</h2>
                             <form id="formPrestamo" method="post">
-                                <div class="mb-3"><input class="form-control" type="text" id="nombres" name="nombres"
-                                        placeholder="Nombres"><input class="form-control" type="text" id="apellidos"
-                                        name="apellidos" placeholder="Apellidos"><input class="form-control"
-                                        id="fechaNacimiento" type="date" name="fechaNacimiento"></div>
-                                <div class="mb-3"><select class="form-select" id="tipoDocumento" name="tipoDocumento">
-                                        <optgroup label="Seleccione un tipo de documento">
-                                            <option value="dui" selected="">DUI</option>
-                                            <option value="pasaporte">Pasaporte</option>
-                                        </optgroup>
-                                    </select><input class="form-control" type="text" id="numeroDocumento"
-                                        name="numeroDocumento" placeholder="Número de documento"></div>
-                                <div class="mb-3"><input class="form-control" type="tel" id="telefono" name="telefono"
-                                        placeholder="Teléfono"><input class="form-control" type="email"
-                                        id="correoElectronico" name="correoElectronico" placeholder="Correo electrónico">
-                                </div>
-                                <div class="mb-3"><input class="form-control" type="text" id="lugarDeTrabajo"
-                                        name="lugarDeTrabajo" placeholder="Lugar de trabajo"><input class="form-control"
-                                        type="number" id="ingresoMensual" name="ingresoMensual"
-                                        placeholder="Ingreso mensual"></div>
                                 <div class="mb-3">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="terminos"
-                                            name="terminos"><label class="form-check-label small" for="terminos">Acepto
-                                            "Términos y condiciones" y "Política de privacidad"</label></div>
-                                    <div>
-                                        <canvas id="canvasFirma" name="canvasFirma" width="350" height="200" class="border rounded-0"></canvas>
-                                    </div><button class="btn btn-light btn-sm" id="btnLimpiarFirma" type="button">Limpiar
-                                        firma</button>
+                                    <label for="nombres" class="small text-muted">Nombres</label>
+                                    <input class="form-control" type="text" id="nombres" name="nombres"
+                                        placeholder="Nombres" maxlength="50" required>
+                                    <label for="apellidos" class="small text-muted">Apellidos</label>
+                                    <input class="form-control" type="text" id="apellidos"
+                                        name="apellidos" placeholder="Apellidos" maxlength="50" required>
+                                    <label for="fechaNacimiento" class="small text-muted">Fecha de nacimiento</label>
+                                    <input class="form-control"
+                                        id="fechaNacimiento" type="date" name="fechaNacimiento" required>
                                 </div>
-                                <div><button class="btn btn-primary d-block w-100" id="btnSolicitar"
-                                        type="submit">Enviar</button></div>
+                                <div class="mb-3">
+                                    <label for="tipoDocumento" class="small text-muted">Tipo de documento</label>
+                                    <select class="form-select" id="tipoDocumento" name="tipoDocumento">
+                                    </select>
+                                    <label for="numeroDocumento" class="small text-muted">N&uacute;mero de documento</label>
+                                    <input class="form-control" type="text" id="numeroDocumento"
+                                        name="numeroDocumento" placeholder="Número de documento" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefono" class="small text-muted">Tel&eacute;fono</label>
+                                    <input class="form-control" type="tel" id="telefono" name="telefono"
+                                        placeholder="Teléfono" maxlength="50" required>
+                                    <label for="correoElectronico" class="small text-muted">Correo electr&oacute;nico</label>
+                                    <input class="form-control" type="email"
+                                        id="correoElectronico" name="correoElectronico"
+                                        placeholder="Correo electrónico" maxlength="50" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lugarDeTrabajo" class="small text-muted">Lugar de trabajo</label>
+                                    <input class="form-control" type="text" id="lugarDeTrabajo"
+                                        name="lugarDeTrabajo" placeholder="Lugar de trabajo" maxlength="150" required>
+                                    <label for="ingresoMensual" class="small text-muted">Ingreso mensual</label>
+                                    <input class="form-control"
+                                        type="number" step=".01" id="ingresoMensual" name="ingresoMensual"
+                                        placeholder="Ingreso mensual" min="0">
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                            id="terminos" name="terminos">
+                                        <label class="form-check-label small"
+                                            for="terminos">
+                                            Acepto los <a href="public/terminos.html" target="_blank" class="link-underline link-underline-opacity-0">"Términos y condiciones" y la "Política de privacidad"</a>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="canvasFirma" class="small text-muted">Firma</label>
+                                        <canvas id="canvasFirma" name="canvasFirma" width="350" height="200"
+                                            class="border rounded-0">
+                                        </canvas>
+                                    </div>
+                                    <button class="btn btn-light btn-sm" id="btnLimpiarFirma"
+                                        type="button">Limpiar firma
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary d-block w-100" id="btnSolicitar"
+                                        type="submit" disabled>Enviar
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -57,9 +92,27 @@
         </div>
     </section>
 
-    
-    <script src="../libs/jquery-3.6.4/jquery-3.6.4.min.js"></script>
-    <script src="../libs/bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="resModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Resultado de env&iacute;o</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <span id="resultado"></span>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../libs/jquery/jquery.min.js"></script>
+    <script src="../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/firma.js"></script>
     <script src="../js/publicform.js"></script>
-<?php
+
+</body>
+</html>
