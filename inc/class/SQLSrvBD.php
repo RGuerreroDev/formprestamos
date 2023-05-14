@@ -52,7 +52,8 @@ class SQLSrvBD
         $connectionInfo = array(
             "Database" => $this->dataBase,
             "UID"      => $this->user,
-            "PWD"      => $this->password
+            "PWD"      => $this->password,
+            "TrustServerCertificate" => "yes"
         );
         $this->conn = sqlsrv_connect($this->serverName, $connectionInfo);
 

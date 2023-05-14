@@ -1,8 +1,12 @@
 <?php
 //-----------------------------------------------
 
-require_once ("../../inc/class/TipoDocumento.php");
-$conn = new SQLSrvBD("139.144.56.88", "FORMPRESTAMOS", "sa", "SQL2014*");
+require_once("../../inc/includes.inc.php");
+require_once("../../inc/class/TipoDocumento.php");
+
+//-----------------------------------------------
+
+$conn = new SQLSrvBD(DB_SERVER, DB_DATABASE, DB_USER, DB_PASSWORD);
 $conn->conectar();
 
 //-----------------------------------------------

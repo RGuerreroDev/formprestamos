@@ -1,8 +1,12 @@
 <?php
 //-----------------------------------------------
 
-require_once ("../../inc/class/SolicitudEnLinea.php");
-$conn = new SQLSrvBD("139.144.56.88", "FORMPRESTAMOS", "sa", "SQL2014*");
+require_once("../../inc/includes.inc.php");
+require_once("../../inc/class/SolicitudEnLinea.php");
+
+//-----------------------------------------------
+
+$conn = new SQLSrvBD(DB_SERVER, DB_DATABASE, DB_USER, DB_PASSWORD);
 $conn->conectar();
 
 //-----------------------------------------------
@@ -37,7 +41,7 @@ $imagenCodificada = $_POST["imagen"];
 $imagenCodificadaLimpia = str_replace("data:image/png;base64,", "", $imagenCodificada);
 $imagenDecodificada = base64_decode($imagenCodificadaLimpia);
 $nombreImagenGuardada = "imagen_" . uniqid() . ".png";
-file_put_contents($nombreImagenGuardada, $imagenDecodificada);
+file_put_contents("../imgs/" . $nombreImagenGuardada, $imagenDecodificada);
 
 // $nombreImagenGuardada = "sinimagen";
 
