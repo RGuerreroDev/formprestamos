@@ -22,24 +22,6 @@
                 </span>
                 <span><?= APP_TITULO ?></span>
             </a>
-            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5">
-                <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navcol-5">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="?mod=solicitudes">Solicitudes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="?mod=usuarios">Usuarios</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?= $_SESSION["usuario"] ?>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item small" href="#" id="linkLogout">Cerrar sesi&oacute;n</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
 

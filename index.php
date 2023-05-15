@@ -10,7 +10,7 @@ require_once("./inc/includes.inc.php");
 //-----------------------------------------------
 
 // Valida si existe sesión, en caso de no existir, redirige a login
-//Sesion::validarSesion();
+Sesion::validarSesion();
 
 //-----------------------------------------------
 
@@ -20,16 +20,19 @@ if (isset($_GET["mod"])) {
     // ya existe sesión: enviar a inicio
     if ($_GET["mod"] == "login" && Sesion::existeSesion())
     {
-        header("Location: ?mod=inicio");
+        //header("Location: ?mod=inicio");
+        header("Location: ?mod=solicitudes");
     }
 
     // Carga encabezado HTML
-    require_once("inc/encabezado.inc.php");
-
     // Si no es pantalla de inicio de sesión, mostrar menú de aplicación
     if ($_GET["mod"] != "login")
     {
-        //require_once("inc/menu.inc.php");
+        require_once("inc/encabezado.inc.php");
+    }
+    else
+    {
+        require_once("inc/encabezadologin.inc.php");
     }
 
     // Si existe una opción dentro del módulo, cargar esa opción
@@ -54,8 +57,7 @@ if (isset($_GET["mod"])) {
     }
     else
     {
-        //header("Location: ?mod=login");
-        header("Location: ?mod=solicitudes");
+        header("Location: ?mod=login");
     }
 }
 

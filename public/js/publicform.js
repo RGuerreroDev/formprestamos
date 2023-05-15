@@ -2,7 +2,7 @@
 
 async function getTiposDocumento()
 {
-    await fetch("public/procs/getTiposDocumento.php", {
+    await fetch("procs/getTiposDocumento.php", {
         method: "POST"
     })
         .then(response => response.json())
@@ -54,7 +54,7 @@ async function fnSubmit(event)
     const formData = new FormData(formPrestamo);
     formData.append("imagen", firma);
 
-    await fetch("public/procs/formsubmit.php", {
+    await fetch("procs/formsubmit.php", {
         method: "POST",
         body: formData
     })

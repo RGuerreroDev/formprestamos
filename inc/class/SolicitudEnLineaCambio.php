@@ -13,6 +13,8 @@ class SolicitudEnLineaCambio
     public $estado;
     public $observaciones;
     public $fechaHoraActualizacion;
+    public $usuarioId;
+    public $usuario;
 
     public $mensajeError;
 
@@ -51,9 +53,12 @@ class SolicitudEnLineaCambio
                 ,E.ESTADO
                 ,C.OBSERVACIONES
                 ,C.FECHAHORAACTUALIZACION
+                ,C.USUARIOID
+                ,U.USUARIO
             FROM
                 SOLICITUDENLINEACAMBIOS C
                 JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=C.SOLICITUDESTADOID
+                JOIN USUARIOS U ON U.USUARIOID=C.USUARIOID
             WHERE
                 C.SOLICITUDENLINEACAMBIOID = ?
         ";
@@ -67,6 +72,8 @@ class SolicitudEnLineaCambio
             $this->estado = $dato["ESTADO"];
             $this->observaciones = $dato["OBSERVACIONES"];
             $this->fechaHoraActualizacion = $dato["FECHAHORAACTUALIZACION"];
+            $this->usuarioId = $dato["USUARIOID"];
+            $this->usuarioId = $dato["USUARIO"];
         }
     }
 
@@ -91,9 +98,12 @@ class SolicitudEnLineaCambio
             ,E.ESTADO
             ,C.OBSERVACIONES
             ,C.FECHAHORAACTUALIZACION
+            ,C.USUARIOID
+            ,U.USUARIO
         FROM
             SOLICITUDENLINEACAMBIOS C
             JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=C.SOLICITUDESTADOID
+            JOIN USUARIOS U ON U.USUARIOID=C.USUARIOID
         WHERE
             C.SOLICITUDENLINEAID = ?
         ORDER BY
@@ -121,6 +131,8 @@ class SolicitudEnLineaCambio
         $this->estado = null;
         $this->observaciones = null;
         $this->fechaHoraActualizacion = null;
+        $this->usuarioId = null;
+        $this->usuario = null;
     }
 
     //-------------------------------------------
@@ -131,25 +143,26 @@ class SolicitudEnLineaCambio
      * @param string $solicitudEnLineaId Solicitud a la que pertenece el cambio
      * @param string $solicitudEstadoId Estado al que se está cambiando la solicitud
      * @param string $observaciones Texto ingresado por usuario que realizó cambio de estado de solicitud
+     * @param int $usuarioId ID del usuario que realiza cambio en solicitud
      * 
      * @return bool Resultado de guardar registro: true: fue guardado, false: no fue guardado
      * 
      */
-    public function agregarRegistro(string $solicitudEnLineaId, string $solicitudEstadoId, string $observaciones): bool
+    public function agregarRegistro(string $solicitudEnLineaId, string $solicitudEstadoId, string $observaciones, int $usuarioId): bool
     {
         $this->resetPropiedades();
 
         $sentenciaSql = "
             INSERT INTO SOLICITUDENLINEACAMBIOS
                 (SOLICITUDENLINEAID, SOLICITUDESTADOID, OBSERVACIONES,
-                FECHAHORAACTUALIZACION)
+                FECHAHORAACTUALIZACION, USUARIOID)
             VALUES
                 (?, ?, ?,
-                GETDATE())
+                GETDATE(), ?)
         ";
         $datoResultado = $this->conn->insert($sentenciaSql,
                                             [
-                                                $solicitudEnLineaId, $solicitudEstadoId, $observaciones
+                                                $solicitudEnLineaId, $solicitudEstadoId, $observaciones, $usuarioId
                                             ],
                                             true);
 

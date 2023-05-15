@@ -40,7 +40,7 @@ foreach ($objSolicitud->cambios as $cambio) {
         "fechaHora" => $cambio["FECHAHORAACTUALIZACION"]->format('d/m/Y H:i:s'),
         "estado" => $cambio["ESTADO"],
         "observacion" => $cambio["OBSERVACIONES"],
-        "usuario" => ""
+        "usuario" => $cambio["USUARIO"]
     ));
 }
 

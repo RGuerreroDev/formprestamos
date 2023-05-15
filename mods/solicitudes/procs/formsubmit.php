@@ -1,6 +1,8 @@
 <?php
 //-----------------------------------------------
 
+session_start();
+
 require_once("../../../inc/includes.inc.php");
 require_once("../../../inc/class/SolicitudEnLinea.php");
 require_once("../../../inc/class/SolicitudEnLineaCambio.php");
@@ -30,7 +32,7 @@ $estadoFinal = $estado;
 // Actualizar datos
 
 $objSolicitudCambio = new SolicitudEnLineaCambio($conn);
-$agregado = $objSolicitudCambio->agregarRegistro($id, $estado, $observaciones);
+$agregado = $objSolicitudCambio->agregarRegistro($id, $estado, $observaciones, $_SESSION["usuarioId"]);
 
 if ($agregado)
 {
@@ -52,6 +54,7 @@ $resultado = array();
 $resultado["error"] = $agregado ? "" : $objSolicitud->mensajeError;
 $resultado["id"] = $id;
 $resultado["estado"] = $estadoFinal;
+$resultado["usuarioid"] = $_SESSION["usuarioId"];
 
 // Retornar JSON con resultado
 
