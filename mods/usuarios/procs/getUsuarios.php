@@ -18,8 +18,8 @@ $datosFinales = array();
 foreach ($datos as $registro) {
     $nuevoRegistro = array(
         "id" => $registro["USUARIOID"],
-        "usuario" => $registro["USUARIO"],
-        "nombrecompleto" => $registro["NOMBRECOMPLETO"],
+        "usuario" => iconv("ISO-8859-1", "UTF-8", $registro["USUARIO"]),
+        "nombrecompleto" => iconv("ISO-8859-1", "UTF-8", $registro["NOMBRECOMPLETO"]),
         "activo" => $registro["ACTIVO"] == 1 ? "S&iacute;" : "No"
     );
 

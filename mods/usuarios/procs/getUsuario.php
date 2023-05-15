@@ -22,8 +22,8 @@ $datos = array();
 
 $datos["id"] = $objUsuario->usuarioId;
 $datos["fechaCreacion"] = $objUsuario->fechaCreacion->format('d/m/Y H:i:s');
-$datos["nombreCompleto"] = $objUsuario->nombreCompleto;
-$datos["usuario"] = $objUsuario->usuario;
+$datos["nombreCompleto"] = iconv("ISO-8859-1", "UTF-8", $objUsuario->nombreCompleto);
+$datos["usuario"] = iconv("ISO-8859-1", "UTF-8", $objUsuario->usuario);
 $datos["activo"] = $objUsuario->activo;
 
 //-----------------------------------------------

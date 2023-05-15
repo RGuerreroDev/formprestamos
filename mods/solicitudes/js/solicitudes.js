@@ -41,7 +41,7 @@ async function getSolicitud(id)
             for (let atributo in data.datos)
             {
                 if (atributo == "firma")
-                    document.querySelector("#firma").src = "./public/imgs/" + data.datos[atributo];
+                    document.querySelector("#firma").src = "public/imgs/" + data.datos[atributo];
                 else if (atributo == "estadoId")
                     document.querySelector("#cambiarEstado").value = data.datos[atributo];
                 else if (atributo != "cambios")

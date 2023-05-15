@@ -19,12 +19,12 @@ foreach ($datos as $registro) {
     $nuevoRegistro = array(
         "id" => $registro["SOLICITUDENLINEAID"],
         "correlativo" => $registro["CORRELATIVO"],
-        "apellidos" => $registro["APELLIDOS"],
-        "nombres" => $registro["NOMBRES"],
+        "apellidos" => iconv("ISO-8859-1", "UTF-8", $registro["APELLIDOS"]),
+        "nombres" => iconv("ISO-8859-1", "UTF-8", $registro["NOMBRES"]),
         "estadoid" => $registro["SOLICITUDESTADOID"],
         "estado" => $registro["ESTADO"],
         "fecharecepcion" => $registro["FECHAHORARECEPCION"]->format('d/m/Y H:i:s'),
-        "trabajo" => $registro["LUGARDETRABAJO"],
+        "trabajo" => iconv("ISO-8859-1", "UTF-8", $registro["LUGARDETRABAJO"]),
         "ingreso" => $registro["INGRESOMENSUAL"]
     );
 
