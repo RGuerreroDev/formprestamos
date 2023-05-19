@@ -36,6 +36,7 @@ class SolicitudEnLinea
     public $estado;
     public $fechaHoraCreacion;
     public $fechaHoraUltimaModificacion;
+    public $autorizaCompartirInfo;
     public $cambios;
 
     public $mensajeError;
@@ -97,6 +98,7 @@ class SolicitudEnLinea
                 ,S.IMAGENDUIFRENTE
                 ,S.IMAGENDUIATRAS
                 ,S.IMAGENRECIBO
+                ,S.AUTORIZACOMPARTIRINFO
             FROM
                 SOLICITUDESENLINEA S
                 JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=S.SOLICITUDESTADOID
@@ -136,6 +138,7 @@ class SolicitudEnLinea
             $this->imagenDuiFrente = $dato["IMAGENDUIFRENTE"];
             $this->imagenDuiAtras = $dato["IMAGENDUIATRAS"];
             $this->imagenRecibo = $dato["IMAGENRECIBO"];
+            $this->autorizaCompartirInfo = $dato["AUTORIZACOMPARTIRINFO"];
         }
 
         if ($this->solicitudEnLineaId > -1)
@@ -188,6 +191,7 @@ class SolicitudEnLinea
             ,S.IMAGENDUIFRENTE
             ,S.IMAGENDUIATRAS
             ,S.IMAGENRECIBO
+            ,S.AUTORIZACOMPARTIRINFO
         FROM
             SOLICITUDESENLINEA S
             JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=S.SOLICITUDESTADOID
@@ -239,6 +243,7 @@ class SolicitudEnLinea
         $this->imagenDuiFrente = null;
         $this->imagenDuiAtras = null;
         $this->imagenRecibo = null;
+        $this->autorizaCompartirInfo = null;
         $this->cambios = array();
     }
 
@@ -302,7 +307,7 @@ class SolicitudEnLinea
                                     string $lugarDeTrabajo, string $direccionTrabajo, string $telefonoTrabajo,
                                     float $ingresoMensual, string $referenciaPersonal, string $telefonReferenciaPersonal,
                                     string $imagenFirma, string $pdfConsentimiento, string $imagenDuiFrente, string $imagenDuiAtras,
-                                    string $imagenRecibo): bool
+                                    string $imagenRecibo, int $autorizaCompartirInfo): bool
     {
         $this->resetPropiedades();
 
@@ -315,14 +320,14 @@ class SolicitudEnLinea
                 DIRECCIONDOMICILIO, TELEFONO, CORREOELECTRONICO, LUGARDETRABAJO, DIRECCIONDETRABAJO,
                 TELEFONOTRABAJO, INGRESOMENSUAL, REFERENCIAPERSONAL, TELEFONOREFERENCIAPERSONAL,
                 IMAGENFIRMA, SOLICITUDESTADOID, PDFCONSENTIMIENTO, IMAGENDUIFRENTE,
-                IMAGENDUIATRAS, IMAGENRECIBO)
+                IMAGENDUIATRAS, IMAGENRECIBO, AUTORIZACOMPARTIRINFO)
             VALUES
                 (DBO.FNSIGUIENTECORRELATIVOSOLICITUDESENLINEA(), GETDATE(),
                 ?, ?, ?, ?, ?,
                 ?, ?, ?, ?, ?,
                 ?, ?, ?, ?,
                 ?, ?, ?, ?,
-                ?, ?)
+                ?, ?, ?)
         ";
         $datoResultado = $this->conn->insert($sentenciaSql,
                                             [
@@ -330,7 +335,7 @@ class SolicitudEnLinea
                                                 $direccionDomicilio, $telefono, $correoElectronico, $lugarDeTrabajo, $direccionTrabajo,
                                                 $telefonoTrabajo, $ingresoMensual, $referenciaPersonal, $telefonReferenciaPersonal,
                                                 $imagenFirma, $estadoInicial, $pdfConsentimiento, $imagenDuiFrente,
-                                                $imagenDuiAtras, $imagenRecibo
+                                                $imagenDuiAtras, $imagenRecibo, $autorizaCompartirInfo
                                             ],
                                             true);
 

@@ -28,6 +28,7 @@ $telefonoTrabajo = $_POST["telefonoTrabajo"];
 $referenciaPersonal = $_POST["referencia"];
 $telefonReferenciaPersonal = $_POST["telefonoReferencia"];
 
+$autorizaCompartirInfo = empty($_POST['autoriza']) ? 1 : 0;
 $siAutoriza = empty($_POST['autoriza']) ? "X" : " ";
 $noAutoriza = empty($_POST['autoriza']) ? " " : "X";
 
@@ -94,7 +95,8 @@ $objSolicitud = new SolicitudEnLinea($conn);
 $agregado = $objSolicitud->agregarRegistro($nombres, $apellidos, $fechaNacimiento, $tipoDocumento, $numeroDocumento,
                                         $direccionDomicilio, $telefono, $correoElectronico, $lugarDeTrabajo, $direccionTrabajo,
                                         $telefonoTrabajo, $ingresoMensual, $referenciaPersonal, $telefonReferenciaPersonal,
-                                        $imagenFirma, $pdfConsentimiento, $imagenDuiFrente, $imagenDuiAtras, $imagenRecibo);
+                                        $imagenFirma, $pdfConsentimiento, $imagenDuiFrente, $imagenDuiAtras, $imagenRecibo,
+                                        $autorizaCompartirInfo);
 
 //-----------------------------------------------
 
