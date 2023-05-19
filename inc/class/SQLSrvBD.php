@@ -53,6 +53,7 @@ class SQLSrvBD
             "Database" => $this->dataBase,
             "UID"      => $this->user,
             "PWD"      => $this->password,
+            "CharacterSet"           => "UTF-8",
             "TrustServerCertificate" => "yes"
         );
         $this->conn = sqlsrv_connect($this->serverName, $connectionInfo);

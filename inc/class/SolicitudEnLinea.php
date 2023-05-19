@@ -17,11 +17,20 @@ class SolicitudEnLinea
     public $tipoDocumentoId;
     public $documento;
     public $numeroDocumento;
+    public $direccionDomicilio;
     public $telefono;
     public $correoElectronico;
     public $lugarDeTrabajo;
+    public $direccionTrabajo;
+    public $telefonoTrabajo;
     public $ingresoMensual;
+    public $referenciaPersonal;
+    public $telefonoReferenciaPersonal;
     public $imagenFirma;
+    public $pdfConsentimiento;
+    public $imagenDuiFrente;
+    public $imagenDuiAtras;
+    public $imagenRecibo;
     public $fechaHoraRecepcion;
     public $solicitudEstadoId;
     public $estado;
@@ -61,24 +70,33 @@ class SolicitudEnLinea
     {
         $sentenciaSql = "
             SELECT
-                S.SOLICITUDENLINEAID
+                 S.SOLICITUDENLINEAID
                 ,S.CORRELATIVO
+                ,S.FECHAHORARECEPCION
                 ,S.NOMBRES
                 ,S.APELLIDOS
                 ,S.FECHANACIMIENTO
                 ,S.TIPODOCUMENTOID
                 ,D.DOCUMENTO
                 ,S.NUMERODOCUMENTO
+                ,S.DIRECCIONDOMICILIO
                 ,S.TELEFONO
                 ,S.CORREOELECTRONICO
                 ,S.LUGARDETRABAJO
+                ,S.DIRECCIONDETRABAJO
+                ,S.TELEFONOTRABAJO
                 ,S.INGRESOMENSUAL
+                ,S.REFERENCIAPERSONAL
+                ,S.TELEFONOREFERENCIAPERSONAL
                 ,S.IMAGENFIRMA
-                ,S.FECHAHORARECEPCION
                 ,S.SOLICITUDESTADOID
                 ,E.ESTADO
                 ,S.FECHAHORACREACION
                 ,S.FECHAHORAULTIMAMODIFICACION
+                ,S.PDFCONSENTIMIENTO
+                ,S.IMAGENDUIFRENTE
+                ,S.IMAGENDUIATRAS
+                ,S.IMAGENRECIBO
             FROM
                 SOLICITUDESENLINEA S
                 JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=S.SOLICITUDESTADOID
@@ -99,16 +117,25 @@ class SolicitudEnLinea
             $this->tipoDocumentoId = $dato["TIPODOCUMENTOID"];
             $this->documento = $dato["DOCUMENTO"];
             $this->numeroDocumento = $dato["NUMERODOCUMENTO"];
+            $this->direccionDomicilio = $dato["DIRECCIONDOMICILIO"];
             $this->telefono = $dato["TELEFONO"];
             $this->correoElectronico = $dato["CORREOELECTRONICO"];
             $this->lugarDeTrabajo = $dato["LUGARDETRABAJO"];
+            $this->direccionTrabajo = $dato["DIRECCIONDETRABAJO"];
+            $this->telefonoTrabajo = $dato["TELEFONOTRABAJO"];
             $this->ingresoMensual = $dato["INGRESOMENSUAL"];
+            $this->referenciaPersonal = $dato["REFERENCIAPERSONAL"];
+            $this->telefonoReferenciaPersonal = $dato["TELEFONOREFERENCIAPERSONAL"];
             $this->imagenFirma = $dato["IMAGENFIRMA"];
             $this->fechaHoraRecepcion = $dato["FECHAHORARECEPCION"];
             $this->solicitudEstadoId = $dato["SOLICITUDESTADOID"];
             $this->estado = $dato["ESTADO"];
             $this->fechaHoraCreacion = $dato["FECHAHORACREACION"];
             $this->fechaHoraUltimaModificacion = $dato["FECHAHORAULTIMAMODIFICACION"];
+            $this->pdfConsentimiento = $dato["PDFCONSENTIMIENTO"];
+            $this->imagenDuiFrente = $dato["IMAGENDUIFRENTE"];
+            $this->imagenDuiAtras = $dato["IMAGENDUIATRAS"];
+            $this->imagenRecibo = $dato["IMAGENRECIBO"];
         }
 
         if ($this->solicitudEnLineaId > -1)
@@ -134,26 +161,37 @@ class SolicitudEnLinea
 
         $sentenciaSql = "
         SELECT
-            S.SOLICITUDENLINEAID
+             S.SOLICITUDENLINEAID
             ,S.CORRELATIVO
+            ,S.FECHAHORARECEPCION
             ,S.NOMBRES
             ,S.APELLIDOS
             ,S.FECHANACIMIENTO
             ,S.TIPODOCUMENTOID
+            ,D.DOCUMENTO
             ,S.NUMERODOCUMENTO
+            ,S.DIRECCIONDOMICILIO
             ,S.TELEFONO
             ,S.CORREOELECTRONICO
             ,S.LUGARDETRABAJO
+            ,S.DIRECCIONDETRABAJO
+            ,S.TELEFONOTRABAJO
             ,S.INGRESOMENSUAL
+            ,S.REFERENCIAPERSONAL
+            ,S.TELEFONOREFERENCIAPERSONAL
             ,S.IMAGENFIRMA
-            ,S.FECHAHORARECEPCION
             ,S.SOLICITUDESTADOID
             ,E.ESTADO
             ,S.FECHAHORACREACION
             ,S.FECHAHORAULTIMAMODIFICACION
+            ,S.PDFCONSENTIMIENTO
+            ,S.IMAGENDUIFRENTE
+            ,S.IMAGENDUIATRAS
+            ,S.IMAGENRECIBO
         FROM
             SOLICITUDESENLINEA S
             JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=S.SOLICITUDESTADOID
+            JOIN TIPOSDOCUMENTO D ON D.TIPODOCUMENTOID=S.TIPODOCUMENTOID
         ORDER BY
             FECHAHORARECEPCION DESC
         ";
@@ -182,16 +220,25 @@ class SolicitudEnLinea
         $this->tipoDocumentoId = null;
         $this->documento = null;
         $this->numeroDocumento = null;
+        $this->direccionDomicilio = null;
         $this->telefono = null;
         $this->correoElectronico = null;
         $this->lugarDeTrabajo = null;
+        $this->direccionTrabajo = null;
+        $this->telefonoTrabajo = null;
         $this->ingresoMensual = null;
+        $this->referenciaPersonal = null;
+        $this->telefonoReferenciaPersonal = null;
         $this->imagenFirma = null;
         $this->fechaHoraRecepcion = null;
         $this->solicitudEstadoId = null;
         $this->estado = null;
         $this->fechaHoraCreacion = null;
         $this->fechaHoraUltimaModificacion = null;
+        $this->pdfConsentimiento = null;
+        $this->imagenDuiFrente = null;
+        $this->imagenDuiAtras = null;
+        $this->imagenRecibo = null;
         $this->cambios = array();
     }
 
@@ -251,8 +298,11 @@ class SolicitudEnLinea
      * 
      */
     public function agregarRegistro(string $nombres, string $apellidos, string $fechaNacimiento, string $tipoDocumentoId,
-                                    string $numeroDocumento, string $telefono, string $correoElectronico, string $lugarDeTrabajo,
-                                    float $ingresoMensual, string $imagenFirma): bool
+                                    string $numeroDocumento, string $direccionDomicilio, string $telefono, string $correoElectronico,
+                                    string $lugarDeTrabajo, string $direccionTrabajo, string $telefonoTrabajo,
+                                    float $ingresoMensual, string $referenciaPersonal, string $telefonReferenciaPersonal,
+                                    string $imagenFirma, string $pdfConsentimiento, string $imagenDuiFrente, string $imagenDuiAtras,
+                                    string $imagenRecibo): bool
     {
         $this->resetPropiedades();
 
@@ -262,19 +312,25 @@ class SolicitudEnLinea
             INSERT INTO SOLICITUDESENLINEA
                 (CORRELATIVO, FECHAHORARECEPCION,
                 NOMBRES, APELLIDOS, FECHANACIMIENTO, TIPODOCUMENTOID, NUMERODOCUMENTO,
-                TELEFONO, CORREOELECTRONICO, LUGARDETRABAJO, INGRESOMENSUAL, IMAGENFIRMA,
-                SOLICITUDESTADOID)
+                DIRECCIONDOMICILIO, TELEFONO, CORREOELECTRONICO, LUGARDETRABAJO, DIRECCIONDETRABAJO,
+                TELEFONOTRABAJO, INGRESOMENSUAL, REFERENCIAPERSONAL, TELEFONOREFERENCIAPERSONAL,
+                IMAGENFIRMA, SOLICITUDESTADOID, PDFCONSENTIMIENTO, IMAGENDUIFRENTE,
+                IMAGENDUIATRAS, IMAGENRECIBO)
             VALUES
                 (DBO.FNSIGUIENTECORRELATIVOSOLICITUDESENLINEA(), GETDATE(),
                 ?, ?, ?, ?, ?,
                 ?, ?, ?, ?, ?,
-                ?)
+                ?, ?, ?, ?,
+                ?, ?, ?, ?,
+                ?, ?)
         ";
         $datoResultado = $this->conn->insert($sentenciaSql,
                                             [
                                                 $nombres, $apellidos, $fechaNacimiento, $tipoDocumentoId, $numeroDocumento,
-                                                $telefono, $correoElectronico, $lugarDeTrabajo, $ingresoMensual, $imagenFirma,
-                                                $estadoInicial
+                                                $direccionDomicilio, $telefono, $correoElectronico, $lugarDeTrabajo, $direccionTrabajo,
+                                                $telefonoTrabajo, $ingresoMensual, $referenciaPersonal, $telefonReferenciaPersonal,
+                                                $imagenFirma, $estadoInicial, $pdfConsentimiento, $imagenDuiFrente,
+                                                $imagenDuiAtras, $imagenRecibo
                                             ],
                                             true);
 

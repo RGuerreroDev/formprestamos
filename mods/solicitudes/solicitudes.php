@@ -1,7 +1,7 @@
 
     <div class="container">
         <h3>Solicitudes de pr&eacute;stamo</h3>
-        <div class="table-responsive">
+        <div class="table-responsive small">
             <table class="table table-sm small"
                 id="table"
                 data-unique-id="id"

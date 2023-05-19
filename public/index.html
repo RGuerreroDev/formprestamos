@@ -18,73 +18,87 @@
     <section class="py-4 py-xl-5">
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <div class="col-xl-8 col-sm-12">
                     <div class="card mb-5">
                         <div class="card-body p-sm-5 small">
                             <h3 class="text-center mb-4">Solicitud de pr&eacute;stamo</h3>
-                            <form id="formPrestamo" method="post">
-                                <div class="mb-3">
-                                    <label for="nombres" class="small text-muted">Nombres</label>
-                                    <input class="form-control" type="text" id="nombres" name="nombres"
-                                        placeholder="Nombres" maxlength="50" required>
-                                    <label for="apellidos" class="small text-muted">Apellidos</label>
-                                    <input class="form-control" type="text" id="apellidos"
-                                        name="apellidos" placeholder="Apellidos" maxlength="50" required>
-                                    <label for="fechaNacimiento" class="small text-muted">Fecha de nacimiento</label>
-                                    <input class="form-control"
-                                        id="fechaNacimiento" type="date" name="fechaNacimiento" required>
+
+                            <form id="formPrestamo">
+                                <div class="row small">
+                                    <div class="col"><label class="form-label text-muted" for="nombres">Nombres <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="nombres" name="nombres" placeholder="Nombres" maxlength="50" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="apellidos">Apellidos <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="apellidos" name="apellidos" placeholder="Apellidos" maxlength="50" required=""></div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="tipoDocumento" class="small text-muted">Tipo de documento</label>
-                                    <select class="form-select" id="tipoDocumento" name="tipoDocumento">
-                                    </select>
-                                    <label for="numeroDocumento" class="small text-muted">N&uacute;mero de documento</label>
-                                    <input class="form-control" type="text" id="numeroDocumento"
-                                        name="numeroDocumento" placeholder="Número de documento" maxlength="50" required>
+                                <div class="row small">
+                                    <div class="col"><label class="form-label text-muted" for="numeroDocumento">Número de DUI <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="numeroDocumento" name="numeroDocumento" placeholder="00000000-0" maxlength="25" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="fechaNacimiento">Fecha de nacimiento <span class="text-danger">*</span></label><input class="form-control form-control-sm" id="fechaNacimiento" name="fechaNacimiento" type="date" required=""></div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="telefono" class="small text-muted">Tel&eacute;fono</label>
-                                    <input class="form-control" type="tel" id="telefono" name="telefono"
-                                        placeholder="Teléfono" maxlength="50" required>
-                                    <label for="correoElectronico" class="small text-muted">Correo electr&oacute;nico</label>
-                                    <input class="form-control" type="email"
-                                        id="correoElectronico" name="correoElectronico"
-                                        placeholder="Correo electrónico" maxlength="50" required>
+                                <div class="row small">
+                                    <div class="col"><label class="form-label text-muted" for="correoElectronico">Correo electrónico <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="email" id="correoElectronico" name="correoElectronico" placeholder="usuario@dominio.com" maxlength="50" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="correoElectronicoConfirm">Confirmar correo electrónico <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="email" id="correoElectronicoConfirm" name="correoElectronicoConfirm" placeholder="usuario@dominio.com" maxlength="50" required=""></div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="lugarDeTrabajo" class="small text-muted">Lugar de trabajo</label>
-                                    <input class="form-control" type="text" id="lugarDeTrabajo"
-                                        name="lugarDeTrabajo" placeholder="Lugar de trabajo" maxlength="150" required>
-                                    <label for="ingresoMensual" class="small text-muted">Ingreso mensual</label>
-                                    <input class="form-control"
-                                        type="number" step=".01" id="ingresoMensual" name="ingresoMensual"
-                                        placeholder="Ingreso mensual" min="0">
+                                <div class="row small">
+                                    <div class="col"><label class="form-label text-muted" for="direccionDomicilio">Dirección de domicilio <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="direccionDomicilio" name="direccionDomicilio" placeholder="Dirección" maxlength="150" required=""></div>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                            id="terminos" name="terminos">
-                                        <label class="form-check-label small"
-                                            for="terminos">
-                                            Acepto los <a href="terminos.html" target="_blank" class="link-underline link-underline-opacity-0">"Términos y condiciones" y la "Política de privacidad"</a>
-                                        </label>
+                                <div class="row small border-bottom pb-2">
+                                    <div class="col"><label class="form-label text-muted" for="telefono">Teléfono principal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="telefono" name="telefono" placeholder="0000-0000" maxlength="50" required=""></div>
+                                    <div class="col"></div>
+                                </div>
+                                <div class="row small">
+                                    <div class="col"><label class="form-label text-muted" for="lugarDeTrabajo">Lugar de trabajo <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="lugarDeTrabajo" name="lugarDeTrabajo" placeholder="Lugar de trabajo" maxlength="150" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="telefonoTrabajo">Teléfono de trabajo</label><input class="form-control form-control-sm" type="text" id="telefonoTrabajo" name="telefonoTrabajo" placeholder="0000-0000" maxlength="50"></div>
+                                </div>
+                                <div class="row small border-bottom pb-2">
+                                    <div class="col"><label class="form-label text-muted" for="direccionTrabajo">Dirección del lugar de trabajo <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="direccionTrabajo" name="direccionTrabajo" placeholder="Dirección del lugar de trabajo" maxlength="150" required=""></div>
+                                </div>
+                                <div class="row small border-bottom pb-2">
+                                    <div class="col"><label class="form-label text-muted" for="referencia">Nombre completo de referencia personal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="referencia" name="referencia" placeholder="Nombre completo de referencia personal" maxlength="100" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="telefonoReferencia">Teléfono de referencia personal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="telefonoReferencia" name="telefonoReferencia" placeholder="0000-0000" maxlength="50" required=""></div>
+                                </div>
+                                <div class="row small border-bottom">
+                                    <div class="col">
+                                        <div class="text-center pt-2">Cada imagen a cargar debe tener tama&ntilde;o m&aacute;ximo de 1MB</div>
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Foto de DUI (frente) <span class="text-danger">*</span></td>
+                                                        <td><input class="form-control form-control-sm uploadimage" type="file" accept="image/*" name="duiFrente" id="duiFrente" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Foto de DUI (atrás) <span class="text-danger">*</span></td>
+                                                        <td><input class="form-control form-control-sm uploadimage" type="file" accept="image/*" name="duiAtras" id="duiAtras" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Foto de recibo de agua o luz de su domicilio <span class="text-danger">*</span></td>
+                                                        <td><input class="form-control form-control-sm uploadimage" type="file" accept="image/*" name="recibo" id="recibo" required></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label for="canvasFirma" class="small text-muted">Firma</label>
-                                        <canvas id="canvasFirma" name="canvasFirma" width="350" height="200"
-                                            class="border rounded-0">
-                                        </canvas>
-                                    </div>
-                                    <button class="btn btn-light btn-sm" id="btnLimpiarFirma"
-                                        type="button">Limpiar firma
-                                    </button>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary d-block w-100" id="btnSolicitar"
-                                        type="submit" disabled>Enviar
-                                    </button>
+                                <div class="row small">
+                                    <div class="col">
+                                        <div><label for="canvasFirma" class="form-label">Firma <span class="text-danger">*</span><br>(A ser utilizada en formulario de consentimiento para consultar y compartir informaci&oacute;n)</label></div>                                        
+                                        <canvas id="canvasFirma" name="canvasFirma" width="350" height="200" class="border rounded-0"></canvas>
+                                        <button class="btn btn-secondary btn-sm" id="btnLimpiarFirma" type="button">Limpiar firma</button>
+                                    </div>
+                                    <div class="col my-auto">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="autoriza" checked>
+                                            <label class="form-check-label" for="autoriza">Autorizo transmitir y compartir mi información personal referente a: <b>Número de 
+                                                teléfono y correo electrónico</b>, a agencias de informaci&oacute;n de datos.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row small">
+                                    <div class="col text-center my-auto">
+                                        <input id="btnSolicitar" class="btn btn-primary" type="submit" value="Enviar solicitud">
+                                    </div>
                                 </div>
                             </form>
+
+                            <p class="text-center mb-4 small text-muted">Todos los campos con <span class="text-danger">*</span> son obligatorios</p>
                         </div>
                     </div>
                 </div>

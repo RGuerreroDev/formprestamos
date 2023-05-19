@@ -61,7 +61,7 @@
                             </div>
                             <div class="col align-self-center">
                                 <input type="hidden" id="id" name="id" value="">
-                                <input class="btn btn-sm btn-primary" type="submit" value="Guardar">
+                                <input class="btn btn-sm btn-primary" type="submit" value="Guardar" disabled>
                             </div>
                         </div>
                     </form>
