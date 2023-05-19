@@ -9,6 +9,19 @@ formPrestamo.addEventListener("submit", fnSubmit);
 async function fnSubmit(event) {
     event.preventDefault();
 
+    if (document.querySelector("#correoElectronico").value != document.querySelector("#correoElectronicoConfirm").value)
+    {
+        alert("El correo electrónico y su confirmación no coinciden");
+        document.querySelector("#correoElectronico").focus();
+        return;
+    }
+
+    if (canvasEstaVacia())
+    {
+        alert("Debe agregar firma al formulario para enviar datos.");
+        return;
+    }
+
     document.querySelector("#btnSolicitar").disabled = true;
 
     const firma = document.querySelector("#canvasFirma").toDataURL("image/png");
