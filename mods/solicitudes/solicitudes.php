@@ -8,7 +8,7 @@
             </fieldset>
         </div>
         <div class="col">
-            <label class="form-label" for="observaciones">Ver solicitudes con estado:</label>
+            <label class="form-label" for="observaciones">Mostrar solicitudes con estado:</label>
             <select class="form-select form-select-sm" name="filtroEstado" id="filtroEstado"></select>
         </div>
         <div class="col align-self-end">
