@@ -275,7 +275,7 @@ class Usuario
     public function login($usuario, $contrasena)
     {
         $resultado = $this->conn->select(
-            "SELECT * FROM USUARIOS WHERE USUARIO = ?",
+            "SELECT * FROM USUARIOS WHERE USUARIO = ? AND ACTIVO=1",
             [$usuario, $contrasena]
         );
 
