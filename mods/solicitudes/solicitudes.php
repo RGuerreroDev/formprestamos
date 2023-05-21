@@ -1,6 +1,6 @@
 <div class="container">
     <h3>Solicitudes de pr&eacute;stamo</h3>
-    <div class="row">
+    <div class="row mb-2">
         <div class="col">
             <fieldset>
                 <label class="form-label" for="observaciones">Mostrar solicitudes desde fecha:</label>
