@@ -197,7 +197,8 @@ class SolicitudEnLinea
             JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=S.SOLICITUDESTADOID
             JOIN TIPOSDOCUMENTO D ON D.TIPODOCUMENTOID=S.TIPODOCUMENTOID
         ORDER BY
-            FECHAHORARECEPCION DESC
+            E.ORDEN ASC,
+            S.FECHAHORARECEPCION DESC
         ";
         $datos = $this->conn->select($sentenciaSql, []);
 
@@ -258,7 +259,8 @@ class SolicitudEnLinea
         WHERE
             $filtro
         ORDER BY
-            FECHAHORARECEPCION DESC
+            E.ORDEN ASC,
+            S.FECHAHORARECEPCION DESC
         ";
         $datos = $this->conn->select($sentenciaSql, []);
 
