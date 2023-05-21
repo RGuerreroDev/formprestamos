@@ -114,7 +114,7 @@ async function fnSubmit(event) {
 
     const formData = new FormData(formUsuario);
 
-    await fetch("mods/usuarios/procs/formsubmit.php", {
+    await fetch("mods/usuarios/procs/formSubmit.php", {
         method: "POST",
         body: formData
     })
