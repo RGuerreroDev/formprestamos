@@ -1,3 +1,4 @@
+<style>td{ word-wrap: break-word; }</style>
 <div class="container">
     <h3>Solicitudes de pr&eacute;stamo</h3>
     <div class="row mb-2">
@@ -16,11 +17,11 @@
         </div>
     </div>
     <div class="table-responsive small">
-        <table class="table table-sm small" id="table" data-unique-id="id" data-pagination="true" data-page-size="25">
+        <table class="table table-sm small" id="table" data-unique-id="id" data-pagination="true" data-page-size="25" style="table-layout: fixed;">
             <thead>
                 <tr>
                     <th data-field="id" data-visible="false">id</th>
-                    <th data-field="correlativo">Correlativo</th>
+                    <th data-field="correlativo" data-width="80">Correlativo</th>
                     <th data-field="fecharecepcion">Fecha de recepci&oacute;n</th>
                     <th data-field="apellidos">Apellidos</th>
                     <th data-field="nombres">Nombres</th>
@@ -29,7 +30,7 @@
                     <th data-field="telefono">Tel&eacute;fono</th>
                     <th data-field="correo">Correo</th>
                     <th data-field="estado" data-formatter="estadoFormatter">Estado</th>
-                    <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents"></th>
+                    <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="50"></th>
                 </tr>
             </thead>
         </table>
