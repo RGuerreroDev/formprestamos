@@ -92,7 +92,7 @@
                         </strong>
                     </div>
                 </div>
-                <div class="row border-bottom">
+                <div class="row border-bottom mb-2">
                     <div class="col-8">Dirección de domicilio
                         <strong>
                             <p id="direccionDomicilio"></p>
@@ -115,10 +115,13 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="adjuntos-tab" data-bs-toggle="tab" data-bs-target="#adjuntos-tab-pane" type="button" role="tab" aria-controls="adjuntos-tab-pane" aria-selected="false">Adjuntos</button>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="historial-tab" data-bs-toggle="tab" data-bs-target="#historial-tab-pane" type="button" role="tab" aria-controls="historial-tab-pane" aria-selected="false">Historial de cambios</button>
+                    </li>
                 </ul>
                 <div class="tab-content" id="tabDatosContent">
                     <div class="tab-pane fade show active" id="trabajo-tab-pane" role="tabpanel" aria-labelledby="trabajo-tab" tabindex="0">
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col">Lugar de trabajo
                                 <strong>
                                     <p id="trabajo"></p>
@@ -139,7 +142,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="referencia-tab-pane" role="tabpanel" aria-labelledby="referencia-tab" tabindex="0">
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col">Referencia personal
                                 <strong>
                                     <p id="referencia"></p>
@@ -153,17 +156,31 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="adjuntos-tab-pane" role="tabpanel" aria-labelledby="adjuntos-tab" tabindex="0">
-                        <div class="list-group">
+                        <div class="list-group mt-2">
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkConsentimiento" href="#" target="_blank">Consentimiento</a>
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiFrente" href="#" target="_blank">DUI (Frente)</a>
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiAtras" href="#" target="_blank">DUI (Atrás)</a>
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkRecibo" href="#" target="_blank">Recibo</a>
                         </div>
                     </div>
+                    <div class="tab-pane fade overflow-auto" style="max-height: 150px;" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab" tabindex="0">
+                        <div class="table-responsive border-top">
+                            <table class="table table-sm small mt-2 " id="tableCambios" data-toggle="tableCambios">
+                                <thead>
+                                    <tr>
+                                        <th data-field="fechaHora">Fecha/hora</th>
+                                        <th data-field="estado">Estado</th>
+                                        <th data-field="observacion">Observaci&oacute;n</th>
+                                        <th data-field="usuario">Usuario</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
                 <form id="formSolicitud">
-                    <div class="row py-2 small bg-light border-top">
+                    <div class="row py-2 small bg-light border-top mt-2">
                         <div class="col">
                             <fieldset>
                                 <label class="form-label" for="cambiarEstado">Cambiar estado</label>
@@ -181,19 +198,6 @@
                         </div>
                     </div>
                 </form>
-                <div class="table-responsive border-top">
-                    <h6>Historial de cambios</h6>
-                    <table class="table table-sm small" id="tableCambios" data-toggle="tableCambios">
-                        <thead>
-                            <tr>
-                                <th data-field="fechaHora">Fecha/hora</th>
-                                <th data-field="estado">Estado</th>
-                                <th data-field="observacion">Observaci&oacute;n</th>
-                                <th data-field="usuario">Usuario</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
