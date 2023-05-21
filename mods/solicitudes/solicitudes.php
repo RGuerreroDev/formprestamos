@@ -157,10 +157,10 @@
                     </div>
                     <div class="tab-pane fade" id="adjuntos-tab-pane" style="min-height: 140px;" role="tabpanel" aria-labelledby="adjuntos-tab" tabindex="0">
                         <div class="list-group mt-2">
-                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkConsentimiento" href="#" target="_blank">Consentimiento</a>
-                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiFrente" href="#" target="_blank">DUI (Frente)</a>
-                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiAtras" href="#" target="_blank">DUI (Atrás)</a>
-                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkRecibo" href="#" target="_blank">Recibo</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkConsentimiento" href="#" target="_blank"><div class="row"><div class="col">Consentimiento</div><div class="col text-center"><i class="bi bi-eye"></i></div></div></a>
+                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiFrente" href="#" target="_blank"><div class="row"><div class="col">DUI (Frente)</div><div class="col text-center"><i class="bi bi-eye"></i></div></div></a>
+                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiAtras" href="#" target="_blank"><div class="row"><div class="col">DUI (Atrás)</div><div class="col text-center"><i class="bi bi-eye"></i></div></div></a>
+                            <a class="list-group-item list-group-item-action list-group-item-light" id="linkRecibo" href="#" target="_blank"><div class="row"><div class="col">Recibo</div><div class="col text-center"><i class="bi bi-eye"></i></div></div></a>
                         </div>
                     </div>
                     <div class="tab-pane fade overflow-auto" style="height: 140px;" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab" tabindex="0">
