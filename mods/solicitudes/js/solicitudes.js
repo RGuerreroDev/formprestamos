@@ -119,7 +119,7 @@ function getEstadoColor(estado)
 
     switch (estado) {
         case "NUEVA":
-            color = "#fd7e14";
+            color = "#ffc107";
             break;
         case "EN PROCESO":
             color = "#0d6efd";
