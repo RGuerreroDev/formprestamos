@@ -41,8 +41,7 @@ async function obtenerSolicitudes() {
 let solModal = new bootstrap.Modal(document.querySelector("#solModal"));
 
 // Para obtener los detalles de una solicitud y mostrarlos en una modal
-async function getSolicitud(id)
-{
+async function getSolicitud(id) {
     const formData = new FormData();
     formData.append("id", id);
 
@@ -52,8 +51,7 @@ async function getSolicitud(id)
     })
         .then(response => response.json())
         .then(data => {
-            for (let atributo in data.datos)
-            {
+            for (let atributo in data.datos) {
                 if (document.querySelector("#" + atributo) == null)
                     continue;
 
@@ -73,7 +71,7 @@ async function getSolicitud(id)
             // Para poner foco en primer pestaña de datos en modal
             const triggerFirstTabEl = document.querySelector('#tabDatos li:first-child button')
             bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
-            
+
             solModal.show();
         })
         .catch(error => console.error("Error: " + error.message));
@@ -96,53 +94,75 @@ window.operateEvents = {
     }
 }
 
+// Para cambiar color de fuente de estado
+function estadoFormatter(value) {
+    let color = "#000000";
+
+    switch (value) {
+        case "NUEVA":
+            color = "#fd7e14";
+            break;
+        case "EN PROCESO":
+            color = "#0d6efd";
+            break;
+        case "APROBADA":
+            color = "#198754";
+            break;
+        case "RECHAZADA":
+            color = "#dc3545";
+            break;
+        default:
+            break;
+    }
+
+    return '<div style="color: ' + color + '">' +
+        value +
+        '</div>';
+}
+
 //-----------------------------------------------
 
 // Para llenar los combos de estados: el de filtro para mostrar solicitudes y el de cambio de estado en una de ellas
-function crearOptions(data)
-{
+function crearOptions(data) {
     var select = document.querySelector("#cambiarEstado");
     var filtroSelect = document.querySelector("#filtroEstado");
 
     // Combo de cambio de estado en una solicitud
-    for(var i = 0; i < data.length; i++)
-    {
+    for (var i = 0; i < data.length; i++) {
         let
             option = document.createElement("OPTION"),
             txt = document.createTextNode(data[i].ESTADO);
         option.appendChild(txt);
         option.setAttribute("value", data[i].SOLICITUDESTADOID);
-        
+
         select.add(option);
     }
 
     // Combo de filtro para tabla de solicitudes
-    for(var i = 0; i < data.length; i++)
-    {
+    for (var i = 0; i < data.length; i++) {
         let
             option = document.createElement("OPTION"),
             txt = document.createTextNode(data[i].ESTADO);
         option.appendChild(txt);
         option.setAttribute("value", data[i].SOLICITUDESTADOID);
-        
+
         filtroSelect.add(option);
     }
 
     let
-            option = document.createElement("OPTION"),
-            txt = document.createTextNode("TODAS");
-        option.appendChild(txt);
-        option.setAttribute("value", "TOD");
-        filtroSelect.add(option);
-        filtroSelect.value = "TOD";
-    
+        option = document.createElement("OPTION"),
+        txt = document.createTextNode("TODAS");
+    option.appendChild(txt);
+    option.setAttribute("value", "TOD");
+    filtroSelect.add(option);
+    filtroSelect.value = "TOD";
+
     // Es hasta que se carga este combo que se obtienen las solicitudes, para enviarle el filtro de TODAS
     obtenerSolicitudes();
 }
 
 // Para obtener la lista de estados y ubicarlos en combos de filtro y de cambio de estado en una solicitud
-async function getEstados()
-{
+async function getEstados() {
     await fetch("mods/solicitudes/procs/getEstados.php", {
         method: "POST"
     })
@@ -165,21 +185,19 @@ formSolicitud.addEventListener("submit", fnSubmit);
 //-----------------------------------------------
 
 // Para eliminar espacios al inicio y final de campo observaciones
-function trimCampos()
-{
+function trimCampos() {
     let observaciones = document.querySelector("#observaciones");
     observaciones.value = observaciones.value.trim();
 }
 
 // Para definir acción al guardar datos
-async function fnSubmit(event)
-{
+async function fnSubmit(event) {
     event.preventDefault();
 
     trimCampos();
 
     let formValido = formSolicitud.checkValidity();
-    if(!formValido) {
+    if (!formValido) {
         formSolicitud.reportValidity();
         return;
     }
@@ -197,23 +215,20 @@ async function fnSubmit(event)
 }
 
 // Si se ha obtenido respuesta al guardar datos, recargar solicitud y mostrarla su cambio de estado en tabla
-function fnFinalizar(data)
-{
-    if (data.error == "")
-    {
+function fnFinalizar(data) {
+    if (data.error == "") {
         document.querySelector("#resultado").innerHTML = "Los cambios fueron guardados.";
         formSolicitud.reset();
         getSolicitud(data.id);
-     
+
         $table.bootstrapTable('updateCellByUniqueId', {
             id: data.id,
             field: 'estado',
             value: data.estado,
             reinit: false
-          })
+        })
     }
-    else
-    {
+    else {
         document.querySelector("#resultado").innerHTML = "Error al guardar cambios.";
     }
 
@@ -226,8 +241,7 @@ function fnFinalizar(data)
 
 document.querySelector("#btnFiltrar").addEventListener("click", fnFiltrar);
 
-async function fnFiltrar(event)
-{
+async function fnFiltrar(event) {
     obtenerSolicitudes();
 }
 

@@ -10,6 +10,7 @@ class Estado
 
     public $estadoId;
     public $estado;
+    public $colorFuente;
 
     public $mensajeError;
 
@@ -45,6 +46,7 @@ class Estado
             SELECT
                 SOLICITUDESTADOID
                ,ESTADO
+               ,COLORFUENTEHEX
             FROM
                 SOLICITUDESTADOS
             WHERE
@@ -78,6 +80,7 @@ class Estado
         SELECT
             SOLICITUDESTADOID
            ,ESTADO
+           ,COLORFUENTEHEX
         FROM
             SOLICITUDESTADOS
         ORDER BY
