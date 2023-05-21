@@ -5,6 +5,21 @@ let
     resModal = new bootstrap.Modal(document.querySelector("#resModal")),
     formPrestamo = document.querySelector("#formPrestamo");
 
+// Para eliminar espacios al inicio y final de campo observaciones
+function trimCampos() {
+    document.querySelector("#nombres").value = document.querySelector("#nombres").value.trim();
+    document.querySelector("#apellidos").value = document.querySelector("#apellidos").value.trim();
+    document.querySelector("#numeroDocumento").value = document.querySelector("#numeroDocumento").value.trim();
+    document.querySelector("#correoElectronico").value = document.querySelector("#correoElectronico").value.trim();
+    document.querySelector("#direccionDomicilio").value = document.querySelector("#direccionDomicilio").value.trim();
+    document.querySelector("#telefono").value = document.querySelector("#telefono").value.trim();
+    document.querySelector("#lugarDeTrabajo").value = document.querySelector("#lugarDeTrabajo").value.trim();
+    document.querySelector("#telefonoTrabajo").value = document.querySelector("#telefonoTrabajo").value.trim();
+    document.querySelector("#direccionTrabajo").value = document.querySelector("#direccionTrabajo").value.trim();
+    document.querySelector("#referencia").value = document.querySelector("#referencia").value.trim();
+    document.querySelector("#telefonoReferencia").value = document.querySelector("#telefonoReferencia").value.trim();
+}
+
 // Acción al enviar datos
 
 formPrestamo.addEventListener("submit", fnSubmit);
@@ -12,18 +27,29 @@ formPrestamo.addEventListener("submit", fnSubmit);
 async function fnSubmit(event) {
     event.preventDefault();
 
+    trimCampos();
+
+    if (!formPrestamo.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    formPrestamo.classList.add('was-validated');
+
+    if (!formPrestamo.checkValidity()) {
+        return;
+    }
+
     // Validación en la que el correo y su confirmación sean iguales
-    if (document.querySelector("#correoElectronico").value != document.querySelector("#correoElectronicoConfirm").value)
-    {
+    if (document.querySelector("#correoElectronico").value != document.querySelector("#correoElectronicoConfirm").value) {
         alert("El correo electrónico y su confirmación no coinciden");
         document.querySelector("#correoElectronico").focus();
         return;
     }
 
     // Validación para asegurar que se ha dibujado una firma
-    if (canvasEstaVacia())
-    {
-        alert("Debe agregar firma al formulario para enviar datos.");
+    if (canvasEstaVacia()) {
+        alert("Debe agregar firma al formulario para enviar la solicitud.");
         return;
     }
 
@@ -50,6 +76,7 @@ function fnFinalizar(data) {
         document.querySelector("#resultado").innerHTML = "Los datos fueron enviados.<br>El consentimiento para consultar y compartir informaci&oacute;n se ha descargado.<br>";
         document.querySelector("#resultado").innerHTML += "[<a href='" + data.datos[3] + "' target='_blank' class='link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>Descargar consentimiento</a>]";
         formPrestamo.reset();
+        formPrestamo.classList.remove('was-validated');
         document.querySelector("#btnSolicitar").disabled = false;
         limpiarCanvas();
         downloadFile(data.datos[3], "consentimiento.pdf");
@@ -121,3 +148,18 @@ async function downloadFile(url, filename) {
 }
 
 //-----------------------------------------------
+
+// // Fetch all the forms we want to apply custom Bootstrap validation styles to
+// const forms = document.querySelectorAll('.needs-validation')
+
+// // Loop over them and prevent submission
+// Array.from(forms).forEach(form => {
+//     form.addEventListener('submit', event => {
+//         if (!form.checkValidity()) {
+//             event.preventDefault()
+//             event.stopPropagation()
+//         }
+
+//         form.classList.add('was-validated')
+//     }, false)
+// })
