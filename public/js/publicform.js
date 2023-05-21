@@ -37,6 +37,7 @@ async function fnSubmit(event) {
     formPrestamo.classList.add('was-validated');
 
     if (!formPrestamo.checkValidity()) {
+        alert("Error:\nDebe llenar todos los campos obligatorios.");
         return;
     }
 
