@@ -32,7 +32,7 @@
                                     <div class="col"><label class="form-label text-muted" for="apellidos">Apellidos <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="apellidos" name="apellidos" placeholder="Apellidos" maxlength="50" required=""></div>
                                 </div>
                                 <div class="row small">
-                                    <div class="col"><label class="form-label text-muted" for="numeroDocumento">Número de DUI <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="numeroDocumento" name="numeroDocumento" placeholder="00000000-0" maxlength="25" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="numeroDocumento">Número de DUI <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="numeroDocumento" name="numeroDocumento" placeholder="00000000-0" data-inputmask-mask="99999999-9" maxlength="25" required=""></div>
                                     <div class="col"><label class="form-label text-muted" for="fechaNacimiento">Fecha de nacimiento <span class="text-danger">*</span></label><input class="form-control form-control-sm" id="fechaNacimiento" name="fechaNacimiento" type="date" required=""></div>
                                 </div>
                                 <div class="row small">
@@ -43,19 +43,19 @@
                                     <div class="col"><label class="form-label text-muted" for="direccionDomicilio">Dirección de domicilio <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="direccionDomicilio" name="direccionDomicilio" placeholder="Dirección" maxlength="150" required=""></div>
                                 </div>
                                 <div class="row small border-bottom pb-2">
-                                    <div class="col"><label class="form-label text-muted" for="telefono">Teléfono principal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="telefono" name="telefono" placeholder="0000-0000" maxlength="50" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="telefono">Teléfono principal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="telefono" name="telefono" placeholder="0000-0000" data-inputmask-mask="9999-9999" maxlength="50" required=""></div>
                                     <div class="col"></div>
                                 </div>
                                 <div class="row small">
                                     <div class="col"><label class="form-label text-muted" for="lugarDeTrabajo">Lugar de trabajo <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="lugarDeTrabajo" name="lugarDeTrabajo" placeholder="Lugar de trabajo" maxlength="150" required=""></div>
-                                    <div class="col"><label class="form-label text-muted" for="telefonoTrabajo">Teléfono de trabajo</label><input class="form-control form-control-sm" type="text" id="telefonoTrabajo" name="telefonoTrabajo" placeholder="0000-0000" maxlength="50"></div>
+                                    <div class="col"><label class="form-label text-muted" for="telefonoTrabajo">Teléfono de trabajo</label><input class="form-control form-control-sm" type="text" id="telefonoTrabajo" name="telefonoTrabajo" placeholder="0000-0000" data-inputmask-mask="9999-9999" maxlength="50"></div>
                                 </div>
                                 <div class="row small border-bottom pb-2">
                                     <div class="col"><label class="form-label text-muted" for="direccionTrabajo">Dirección del lugar de trabajo <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="direccionTrabajo" name="direccionTrabajo" placeholder="Dirección del lugar de trabajo" maxlength="150" required=""></div>
                                 </div>
                                 <div class="row small border-bottom pb-2">
                                     <div class="col"><label class="form-label text-muted" for="referencia">Nombre completo de referencia personal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="referencia" name="referencia" placeholder="Nombre completo de referencia personal" maxlength="100" required=""></div>
-                                    <div class="col"><label class="form-label text-muted" for="telefonoReferencia">Teléfono de referencia personal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="telefonoReferencia" name="telefonoReferencia" placeholder="0000-0000" maxlength="50" required=""></div>
+                                    <div class="col"><label class="form-label text-muted" for="telefonoReferencia">Teléfono de referencia personal <span class="text-danger">*</span></label><input class="form-control form-control-sm" type="text" id="telefonoReferencia" name="telefonoReferencia" placeholder="0000-0000" data-inputmask-mask="9999-9999" maxlength="50" required=""></div>
                                 </div>
                                 <div class="row small border-bottom">
                                     <div class="col">
@@ -127,6 +127,7 @@
     </div>
 
     <script src="../libs/jquery/jquery.min.js"></script>
+    <script src="../libs/jquery/jquery.inputmask.min.js"></script>
     <script src="../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/firma.js"></script>
     <script src="js/publicform.js"></script>

@@ -154,17 +154,9 @@ async function downloadFile(url, filename) {
 
 //-----------------------------------------------
 
-// // Fetch all the forms we want to apply custom Bootstrap validation styles to
-// const forms = document.querySelectorAll('.needs-validation')
+jQuery("#telefono").inputmask({"mask": "9999-9999"});
+jQuery("#telefonoTrabajo").inputmask({"mask": "9999-9999"});
+jQuery("#telefonoReferencia").inputmask({"mask": "9999-9999"});
+jQuery("#numeroDocumento").inputmask({"mask": "99999999-9"});
 
-// // Loop over them and prevent submission
-// Array.from(forms).forEach(form => {
-//     form.addEventListener('submit', event => {
-//         if (!form.checkValidity()) {
-//             event.preventDefault()
-//             event.stopPropagation()
-//         }
-
-//         form.classList.add('was-validated')
-//     }, false)
-// })
+//-----------------------------------------------
