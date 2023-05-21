@@ -13,12 +13,10 @@
 <body>
     <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3" style="height: 60px;">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-               <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
-                    <img src="imgs/lacuracaomini.png" style="max-width: 40px;">
-                </span>
-                <span>Solicitudes de pr&eacute;stamos</span>
-            </a>
+            <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
+                <img src="imgs/lacuracaomini.png" style="max-width: 40px;">
+            </span>
+            <span>Solicitudes de pr&eacute;stamos</span>
         </div>
     </nav>
 
