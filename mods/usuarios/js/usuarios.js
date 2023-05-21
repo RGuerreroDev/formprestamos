@@ -85,6 +85,16 @@ document.querySelector("#usrModal").addEventListener('shown.bs.modal', () => {
 
 //-----------------------------------------------
 
+function trimCampos()
+{
+    let
+        nombre = document.querySelector("#nombreCompleto"),
+        usuario = document.querySelector("#usuario");
+
+    nombre.value = nombre.value.trim();
+    usuario.value = usuario.value.trim();
+}
+
 // Para eliminar espacios al inicio y final de campos de nombre completo y usuario
 function validarFormulario()
 {
@@ -124,8 +134,13 @@ formUsuario.addEventListener("submit", fnSubmit);
 async function fnSubmit(event) {
     event.preventDefault();
 
-    if (!validarFormulario())
+    trimCampos();
+
+    let formValido = formUsuario.checkValidity();
+    if(!formValido) {
+        formUsuario.reportValidity();
         return;
+    }
 
     const formData = new FormData(formUsuario);
 
@@ -165,6 +180,7 @@ async function fnCrear() {
     document.querySelector("#usuarioTitle").innerHTML = "[Nuevo usuario]";
     document.querySelector("#usuario").removeAttribute("readonly");
     document.querySelector("#contrasena").setAttribute("required", "");
+    document.querySelector("#fechaCreacion").innerHTML = "";
     document.querySelector("#id").value = -1;
 
     usrModal.show();

@@ -165,26 +165,6 @@ formSolicitud.addEventListener("submit", fnSubmit);
 //-----------------------------------------------
 
 // Para eliminar espacios al inicio y final de campo observaciones
-function validarFormulario()
-{
-    let
-        observaciones = document.querySelector("#observaciones"),
-        mensaje = "";
-
-    observaciones.value = observaciones.value.trim();
-
-    if (observaciones.value.length == 0)
-        mensaje += "El campo de observaciones es obligatorio.\n";
-
-    if (mensaje.length > 0)
-    {
-        alert("Error:\n" + mensaje);
-        return false;
-    }
-
-    return true;
-}
-
 function trimCampos()
 {
     let observaciones = document.querySelector("#observaciones");
@@ -198,8 +178,8 @@ async function fnSubmit(event)
 
     trimCampos();
 
-    let forValido = formSolicitud.checkValidity();
-    if(!forValido) {
+    let formValido = formSolicitud.checkValidity();
+    if(!formValido) {
         formSolicitud.reportValidity();
         return;
     }
