@@ -28,9 +28,9 @@ $telefonoTrabajo = $_POST["telefonoTrabajo"];
 $referenciaPersonal = $_POST["referencia"];
 $telefonReferenciaPersonal = $_POST["telefonoReferencia"];
 
-$autorizaCompartirInfo = empty($_POST['autoriza']) ? 1 : 0;
-$siAutoriza = empty($_POST['autoriza']) ? "X" : " ";
-$noAutoriza = empty($_POST['autoriza']) ? " " : "X";
+$autorizaCompartirInfo = empty($_POST['autoriza']) ? 0 : 1;
+$siAutoriza = empty($_POST['autoriza']) ? " " : "X";
+$noAutoriza = empty($_POST['autoriza']) ? "X" : " ";
 
 //-----------------------------------------------
 

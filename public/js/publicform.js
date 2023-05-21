@@ -76,11 +76,15 @@ function fnFinalizar(data) {
     if (data.agregado) {
         document.querySelector("#resultado").innerHTML = "Los datos fueron enviados.<br>El consentimiento para consultar y compartir informaci&oacute;n se ha descargado.<br>";
         document.querySelector("#resultado").innerHTML += "[<a href='" + data.datos[3] + "' target='_blank' class='link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>Descargar consentimiento</a>]";
-        formPrestamo.reset();
+        
         formPrestamo.classList.remove('was-validated');
         document.querySelector("#btnSolicitar").disabled = false;
         limpiarCanvas();
         downloadFile(data.datos[3], "consentimiento.pdf");
+
+        setTimeout(function(){
+            formPrestamo.reset();
+        }, 1000);
     }
     else {
         document.querySelector("#resultado").innerHTML = "Error al enviar datos.";
