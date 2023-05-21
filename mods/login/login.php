@@ -1,5 +1,6 @@
         <section class="d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="card" style="min-width: 300px;">
+                <img src="../imgs/lacuracaologo.png" class="mx-auto d-block" style="max-width: 150px;">
                 <div class="card-body">
                     <h5 class="card-header mb-2">Inicio de sesi&oacute;n</h5>
                     <form id="frmInicioSesion">
