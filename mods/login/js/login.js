@@ -51,3 +51,7 @@ function resInicioSesion(data)
 }
 
 //-----------------------------------------------
+
+document.querySelector("#usuario").focus();
+
+//-----------------------------------------------

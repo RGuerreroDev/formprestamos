@@ -93,9 +93,14 @@
                     </div>
                 </div>
                 <div class="row border-bottom">
-                    <div class="col">Dirección de domicilio
+                    <div class="col-8">Dirección de domicilio
                         <strong>
                             <p id="direccionDomicilio"></p>
+                        </strong>
+                    </div>
+                    <div class="col">Autorizó compartir información
+                        <strong>
+                            <p id="autoriza"></p>
                         </strong>
                     </div>
                 </div>
@@ -157,15 +162,8 @@
                     </div>
                 </div>
 
-                <div class="row border-top border-bottom">
-                    <div class="col">Autorizó compartir información
-                        <strong>
-                            <p id="autoriza"></p>
-                        </strong>
-                    </div>
-                </div>
                 <form id="formSolicitud">
-                    <div class="row py-2 small bg-light">
+                    <div class="row py-2 small bg-light border-top">
                         <div class="col">
                             <fieldset>
                                 <label class="form-label" for="cambiarEstado">Cambiar estado</label>

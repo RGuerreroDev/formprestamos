@@ -26,6 +26,7 @@ $datos = array();
 $datos["id"] = $objSolicitud->solicitudEnLineaId;
 $datos["fechaRecepcion"] = $objSolicitud->fechaHoraRecepcion->format('d/m/Y H:i:s');
 $datos["estadoId"] = $objSolicitud->solicitudEstadoId;
+$datos["cambiarEstado"] = $objSolicitud->solicitudEstadoId;
 $datos["estado"] = $objSolicitud->estado;
 
 $datos["nombres"] = $objSolicitud->nombres;

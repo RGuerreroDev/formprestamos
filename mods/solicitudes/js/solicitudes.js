@@ -58,7 +58,7 @@ async function getSolicitud(id)
                     continue;
 
                 // Cada campo tiene el mismo nombre de los controles en el html, se ubican según su tipo
-                if (atributo == "estadoId")
+                if (atributo == "cambiarEstado")
                     document.querySelector("#cambiarEstado").value = data.datos[atributo];
                 else if (atributo.startsWith("link"))
                     document.querySelector("#" + atributo).href = data.datos[atributo];
