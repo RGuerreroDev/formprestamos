@@ -170,7 +170,7 @@
                                     <tr>
                                         <th data-field="fechaHora">Fecha/hora</th>
                                         <th data-field="estado">Estado</th>
-                                        <th data-field="observacion">Observaci&oacute;n</th>
+                                        <th data-field="observacion">Observaciones</th>
                                         <th data-field="usuario">Usuario</th>
                                     </tr>
                                 </thead>

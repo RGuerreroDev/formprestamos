@@ -134,7 +134,7 @@ function crearOptions(data)
         option.appendChild(txt);
         option.setAttribute("value", "TOD");
         filtroSelect.add(option);
-        filtroSelect.value = "NUE";
+        filtroSelect.value = "TOD";
     
     // Es hasta que se carga este combo que se obtienen las solicitudes, para enviarle el filtro de TODAS
     obtenerSolicitudes();
@@ -162,11 +162,48 @@ let
 
 formSolicitud.addEventListener("submit", fnSubmit);
 
+//-----------------------------------------------
+
+// Para eliminar espacios al inicio y final de campo observaciones
+function validarFormulario()
+{
+    let
+        observaciones = document.querySelector("#observaciones"),
+        mensaje = "";
+
+    observaciones.value = observaciones.value.trim();
+
+    if (observaciones.value.length == 0)
+        mensaje += "El campo de observaciones es obligatorio.\n";
+
+    if (mensaje.length > 0)
+    {
+        alert("Error:\n" + mensaje);
+        return false;
+    }
+
+    return true;
+}
+
+function trimCampos()
+{
+    let observaciones = document.querySelector("#observaciones");
+    observaciones.value = observaciones.value.trim();
+}
+
 // Para definir acción al guardar datos
 async function fnSubmit(event)
 {
     event.preventDefault();
-    
+
+    trimCampos();
+
+    let forValido = formSolicitud.checkValidity();
+    if(!forValido) {
+        formSolicitud.reportValidity();
+        return;
+    }
+
     const formData = new FormData(formSolicitud);
     formData.append("id", document.querySelector("#id").innerHTML);
 
