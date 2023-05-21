@@ -54,7 +54,7 @@
                     <div class="col"></div>
                     <div class="col">Estado
                         <strong>
-                            <p id="estado"></p>
+                            <p id="estado" class="text-center"></p>
                         </strong>
                     </div>
                 </div>

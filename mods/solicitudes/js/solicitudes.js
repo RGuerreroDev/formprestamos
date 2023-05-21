@@ -62,6 +62,13 @@ async function getSolicitud(id) {
                     document.querySelector("#" + atributo).href = data.datos[atributo];
                 else if (atributo != "cambios")
                     document.querySelector("#" + atributo).innerHTML = data.datos[atributo];
+
+                // Para poner el color del estado
+                if (atributo == "estado")
+                {
+                    document.querySelector("#estado").style.color = "#ffffff";
+                    document.querySelector("#estado").style.backgroundColor = getEstadoColor(data.datos[atributo]);
+                }
             }
 
             // Recargar tabla de solicitudes con datos obtenidos
@@ -96,9 +103,21 @@ window.operateEvents = {
 
 // Para cambiar color de fuente de estado
 function estadoFormatter(value) {
-    let color = "#000000";
+    let color = getEstadoColor(value);
 
-    switch (value) {
+    return '<div style="color: #ffffff; background-color: ' + color + '"><strong>&nbsp;' +
+        value +
+        '</strong></div>';
+}
+
+//-----------------------------------------------
+
+// Para obtener el color de fondo o fuente según estado de solicitud
+function getEstadoColor(estado)
+{
+    color = "#000000";
+
+    switch (estado) {
         case "NUEVA":
             color = "#fd7e14";
             break;
@@ -115,9 +134,7 @@ function estadoFormatter(value) {
             break;
     }
 
-    return '<div style="color: ' + color + '"><strong>' +
-        value +
-        '</strong></div>';
+    return color;
 }
 
 //-----------------------------------------------
