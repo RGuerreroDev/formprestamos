@@ -32,15 +32,6 @@ $autorizaCompartirInfo = empty($_POST['autoriza']) ? 1 : 0;
 $siAutoriza = empty($_POST['autoriza']) ? "X" : " ";
 $noAutoriza = empty($_POST['autoriza']) ? " " : "X";
 
-
-// $nombres = "Roberto";
-// $apellidos = "Guerrero";
-// $numeroDocumento = "002937326";
-// $telefono = "12345678";
-// $correoElectronico = "rguerrero@softdevelop.dev";
-// $imagenFirma = "../uploads/" . "64659aa6a866c_firma.png";
-
-
 //-----------------------------------------------
 
 // Guardar imagen de firma

@@ -1,19 +1,23 @@
 //-----------------------------------------------
 
+// Tablas que muestran datos
 let $table = $("#table");
 let $tableCambios = $("#tableCambios");
 
+// Para poner por defecto que se muestren solicitudes de un mes anterior a fecha actual
 let hoy = new Date();
 let desde = hoy.setMonth(hoy.getMonth() - 1);
 document.querySelector("#fechaDesde").valueAsDate = new Date(desde);
 
 //-----------------------------------------------
 
+// Para llenar tabal con solicitudes, se recibe el arreglo con los datos
 function llenarTabla(data) {
     $table.bootstrapTable({ data: data });
     $table.bootstrapTable('hideLoading');
 }
 
+// Para obtener datos de solicitudes, se obtiene un arreglo para llenar tabla
 async function obtenerSolicitudes() {
     $table.bootstrapTable('destroy')
     $table.bootstrapTable('showLoading');
@@ -33,8 +37,10 @@ async function obtenerSolicitudes() {
 
 //-----------------------------------------------
 
+// Modal en la que se muestra el detalle de una solicitud
 let solModal = new bootstrap.Modal(document.querySelector("#solModal"));
 
+// Para obtener los detalles de una solicitud y mostrarlos en una modal
 async function getSolicitud(id)
 {
     const formData = new FormData();
@@ -51,19 +57,20 @@ async function getSolicitud(id)
                 if (document.querySelector("#" + atributo) == null)
                     continue;
 
-                if (atributo == "firma")
-                    document.querySelector("#firma").src = "public/imgs/" + data.datos[atributo];
-                else if (atributo == "estadoId")
+                // Cada campo tiene el mismo nombre de los controles en el html, se ubican según su tipo
+                if (atributo == "estadoId")
                     document.querySelector("#cambiarEstado").value = data.datos[atributo];
                 else if (atributo.startsWith("link"))
-                document.querySelector("#" + atributo).href = data.datos[atributo];
+                    document.querySelector("#" + atributo).href = data.datos[atributo];
                 else if (atributo != "cambios")
                     document.querySelector("#" + atributo).innerHTML = data.datos[atributo];
             }
 
+            // Recargar tabla de solicitudes con datos obtenidos
             $tableCambios.bootstrapTable('destroy')
             $tableCambios.bootstrapTable({ data: data.datos["cambios"] });
 
+            // Para poner foco en primer pestaña de datos en modal
             const triggerFirstTabEl = document.querySelector('#tabDatos li:first-child button')
             bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
             
@@ -72,6 +79,7 @@ async function getSolicitud(id)
         .catch(error => console.error("Error: " + error.message));
 }
 
+// Para agregar acciones a cada solicitud en tabla de datos
 function operateFormatter(value, row, index) {
     return [
         '<a class="abrir" href="javascript:void(0)" title="Abrir">',
@@ -80,6 +88,7 @@ function operateFormatter(value, row, index) {
     ].join('')
 }
 
+// Para definir la acción de obtener detalle de una solicitud al dar clic en una de ellas
 window.operateEvents = {
     'click .abrir': function (e, value, row, index) {
         document.querySelector("#correlativoTitulo").innerHTML = row.correlativo;
@@ -89,11 +98,13 @@ window.operateEvents = {
 
 //-----------------------------------------------
 
+// Para llenar los combos de estados: el de filtro para mostrar solicitudes y el de cambio de estado en una de ellas
 function crearOptions(data)
 {
     var select = document.querySelector("#cambiarEstado");
     var filtroSelect = document.querySelector("#filtroEstado");
 
+    // Combo de cambio de estado en una solicitud
     for(var i = 0; i < data.length; i++)
     {
         let
@@ -105,6 +116,7 @@ function crearOptions(data)
         select.add(option);
     }
 
+    // Combo de filtro para tabla de solicitudes
     for(var i = 0; i < data.length; i++)
     {
         let
@@ -124,9 +136,11 @@ function crearOptions(data)
         filtroSelect.add(option);
         filtroSelect.value = "NUE";
     
+    // Es hasta que se carga este combo que se obtienen las solicitudes, para enviarle el filtro de TODAS
     obtenerSolicitudes();
 }
 
+// Para obtener la lista de estados y ubicarlos en combos de filtro y de cambio de estado en una solicitud
 async function getEstados()
 {
     await fetch("mods/solicitudes/procs/getEstados.php", {
@@ -141,12 +155,14 @@ getEstados();
 
 //-----------------------------------------------
 
+// Modal para mostrar resultado de guardar datos
 let
     resModal = new bootstrap.Modal(document.querySelector("#resModal")),
     formSolicitud = document.querySelector("#formSolicitud");
 
 formSolicitud.addEventListener("submit", fnSubmit);
 
+// Para definir acción al guardar datos
 async function fnSubmit(event)
 {
     event.preventDefault();
@@ -163,6 +179,7 @@ async function fnSubmit(event)
         .catch(error => console.error("Error: " + error.message));
 }
 
+// Si se ha obtenido respuesta al guardar datos, recargar solicitud y mostrarla su cambio de estado en tabla
 function fnFinalizar(data)
 {
     if (data.error == "")
@@ -187,6 +204,8 @@ function fnFinalizar(data)
 }
 
 //-----------------------------------------------
+
+// Acción del botón que aplica filtro para obtener lista de solicitudes
 
 document.querySelector("#btnFiltrar").addEventListener("click", fnFiltrar);
 

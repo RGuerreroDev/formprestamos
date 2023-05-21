@@ -22,11 +22,6 @@ $observaciones = $_POST["observaciones"];
 
 $estadoFinal = $estado;
 
-// $id = 1;
-// $estado = "APR";
-// $observaciones = "La observación";
-
-
 //-----------------------------------------------
 
 // Actualizar datos

@@ -20,11 +20,6 @@ $nombreCompleto = $_POST["nombreCompleto"];
 $usuario = $_POST["usuario"];
 $contrasena = $_POST["contrasena"];
 
-// $id = -1;
-// $nombreCompleto = "Roberto Guerrero";
-// $usuario = "rguerrero";
-// $contrasena = "brethart";
-
 $activo = empty($_POST['activo']) ? 0 : 1;
 
 //-----------------------------------------------

@@ -1,14 +1,17 @@
 //-----------------------------------------------
 
+// Tabla en la que se va a mostrar lista de usuarios
 let $table = $("#table");
 
 //-----------------------------------------------
 
+// Para llenar tabla de lista de usuarios, se recibe un arreglo con la lista de usuarios
 function llenarTabla(data) {
     $table.bootstrapTable({ data: data });
     $table.bootstrapTable('hideLoading');
 }
 
+// Para obtener la lista de usuarios y ubicarlos en tabla
 async function obtenerUsuarios() {
     $table.bootstrapTable('destroy');
     $table.bootstrapTable('showLoading');
@@ -25,8 +28,10 @@ obtenerUsuarios();
 
 //-----------------------------------------------
 
+// Modal para crear usuario o mostrar detalle de usuario que va a ser editado
 let usrModal = new bootstrap.Modal(document.querySelector("#usrModal"));
 
+// Para obtener los datos de un usuario en modal para editarlo
 async function getUsuario(id) {
     const formData = new FormData();
     formData.append("id", id);
@@ -38,6 +43,7 @@ async function getUsuario(id) {
         .then(response => response.json())
         .then(data => {
             for (let atributo in data.datos) {
+                // Los campos obtenidos tienen el mismo nombre que los inputs en formulario, se ubican en cada uno
                 if (atributo == "activo")
                     document.querySelector("#" + atributo).checked = data.datos[atributo] == 1;
                 else if (atributo == "fechaCreacion")
@@ -46,6 +52,8 @@ async function getUsuario(id) {
                     document.querySelector("#" + atributo).value = data.datos[atributo];
             }
 
+            // Se está editando un usuario: la contraseña no es obligatoria, ya que si no se edita no se cambia
+            // El usuario es solamente de lectura, no se puede cambiar
             document.querySelector("#contrasena").removeAttribute("required");
             document.querySelector("#usuario").setAttribute("readonly", "true");
             usrModal.show();
@@ -53,6 +61,7 @@ async function getUsuario(id) {
         .catch(error => console.error("Error: " + error.message));
 }
 
+// Para agregar acciones a cada fila de usuario que se muestra en tabla
 function operateFormatter(value, row, index) {
     return [
         '<a class="abrir" href="javascript:void(0)" title="Abrir">',
@@ -61,6 +70,7 @@ function operateFormatter(value, row, index) {
     ].join('')
 }
 
+// Para definir la acción al dar clic sobre un usuario que se muestra en tabla (obtener datos y mostrar en modal)
 window.operateEvents = {
     'click .abrir': function (e, value, row, index) {
         document.querySelector("#usuarioTitle").innerHTML = row.usuario;
@@ -68,12 +78,14 @@ window.operateEvents = {
     }
 }
 
+// Para poner foco en input de nombre completo cuando se abre la modal para crear o editar un usuario
 document.querySelector("#usrModal").addEventListener('shown.bs.modal', () => {
     document.querySelector("#nombreCompleto").focus();
 });
 
 //-----------------------------------------------
 
+// Para eliminar espacios al inicio y final de campos de nombre completo y usuario
 function validarFormulario()
 {
     let
@@ -100,9 +112,12 @@ function validarFormulario()
 
 //-----------------------------------------------
 
+// Modal de resultado de guardar datos
 let
     resModal = new bootstrap.Modal(document.querySelector("#resModal")),
     formUsuario = document.querySelector("#formUsuario");
+
+// Acción al guardar datos de usuario
 
 formUsuario.addEventListener("submit", fnSubmit);
 
@@ -123,6 +138,7 @@ async function fnSubmit(event) {
         .catch(error => console.error("Error: " + error.message));
 }
 
+// Si se ha recibido respuesta al guardar datos, finalizar mostrando mensaje de error o de éxito
 function fnFinalizar(data) {
     if (data.error == "") {
         document.querySelector("#resultado").innerHTML = data.mensaje;
@@ -139,6 +155,8 @@ function fnFinalizar(data) {
 }
 
 //-----------------------------------------------
+
+// Al dar clic en botón de crear usuario: se muestra modal con formulario vacío y acá sí es obligatoria la contraseña
 
 document.querySelector("#btnCrear").addEventListener("click", fnCrear);
 

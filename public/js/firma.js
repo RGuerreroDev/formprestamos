@@ -1,5 +1,7 @@
 //-----------------------------------------------
 
+// Variables para definir canvas en la que se va a dibujar una firma
+
 const
     $canvasFirma = document.querySelector("#canvasFirma"),
     $btnLimpiarFirma = document.querySelector("#btnLimpiarFirma");
@@ -22,6 +24,7 @@ let
 
 //-----------------------------------------------
 
+// Al iniciar a dibujar en el canvas se muestra la línea trazada
 $canvasFirma.addEventListener("mousedown", evento => {
     xAnterior = xActual;
     yAnterior = yActual;
@@ -36,6 +39,7 @@ $canvasFirma.addEventListener("mousedown", evento => {
     haFirmado = true;
 });
 
+// Cuando se mueve dentro de canvas y se está dibujando, se muestra la traza
 $canvasFirma.addEventListener("mousemove", (evento) => {
     if (!haComenzadoDibujo) {
         return;
@@ -61,6 +65,7 @@ $canvasFirma.addEventListener("mousemove", (evento) => {
 
 //-----------------------------------------------
 
+// Para dejar en blanco el canvas
 const limpiarCanvas = () => {
     contexto.fillStyle = COLOR_FONDO;
     contexto.fillRect(0, 0, $canvasFirma.width, $canvasFirma.height);
@@ -72,6 +77,7 @@ $btnLimpiarFirma.onclick = limpiarCanvas;
 
 //-----------------------------------------------
 
+// Para poder establecer si el canvas está vacío (no se ha firmado)
 function canvasEstaVacia() {
     return !haFirmado;
 }

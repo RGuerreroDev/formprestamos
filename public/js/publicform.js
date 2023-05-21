@@ -1,14 +1,18 @@
 //-----------------------------------------------
 
+// Modal de respuesta de datos guardados
 let
     resModal = new bootstrap.Modal(document.querySelector("#resModal")),
     formPrestamo = document.querySelector("#formPrestamo");
+
+// Acción al enviar datos
 
 formPrestamo.addEventListener("submit", fnSubmit);
 
 async function fnSubmit(event) {
     event.preventDefault();
 
+    // Validación en la que el correo y su confirmación sean iguales
     if (document.querySelector("#correoElectronico").value != document.querySelector("#correoElectronicoConfirm").value)
     {
         alert("El correo electrónico y su confirmación no coinciden");
@@ -16,6 +20,7 @@ async function fnSubmit(event) {
         return;
     }
 
+    // Validación para asegurar que se ha dibujado una firma
     if (canvasEstaVacia())
     {
         alert("Debe agregar firma al formulario para enviar datos.");
@@ -24,6 +29,7 @@ async function fnSubmit(event) {
 
     document.querySelector("#btnSolicitar").disabled = true;
 
+    // Preparar firma para ser enviada como imagen adjunta
     const firma = document.querySelector("#canvasFirma").toDataURL("image/png");
 
     const formData = new FormData(formPrestamo);
@@ -38,6 +44,7 @@ async function fnSubmit(event) {
         .catch(error => console.error("Error: " + error.message));
 }
 
+// Al recibir respuesta de proceso de guardado: se limpia formulario, se descarga el consentimiento y se muestra resultado
 function fnFinalizar(data) {
     if (data.agregado) {
         document.querySelector("#resultado").innerHTML = "Los datos fueron enviados.<br>El consentimiento para consultar y compartir informaci&oacute;n se ha descargado.<br>";
@@ -55,6 +62,8 @@ function fnFinalizar(data) {
 }
 
 //-----------------------------------------------
+
+// Para validar que se están subiendo solo archivos de tipo imagen y que cada uno no sobrepase 1MB de tamaño
 
 document.querySelectorAll(".uploadimage").forEach(fileInput => {
     fileInput.addEventListener("change", fnValidaImagen);
@@ -86,6 +95,7 @@ function fnValidaImagen(event) {
 
 //-----------------------------------------------
 
+// Para descargar de forma automática el consentimiento después que se ha enviado el formulario
 async function downloadFile(url, filename) {
     try {
         const response = await fetch(url);

@@ -91,7 +91,6 @@ class PDF extends FPDF
 
 //-----------------------------------------------
 
-// create new PDF document
 $pdf = new PDF();
 
 // Primera página
@@ -101,7 +100,8 @@ $pdf->SetFont("Arial", "", 8);
 
 //-----------------------------------------------
 
-// Tomar plantilla e insertar datos en ella
+// Tomar plantilla (archivo HTML) e insertar datos en ella
+
 $html = file_get_contents('../consentimiento.html');
 
 $html = str_replace("{nombrecompleto}", $nombres . " " . $apellidos, $html);
