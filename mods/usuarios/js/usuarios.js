@@ -157,10 +157,13 @@ async function fnSubmit(event) {
 function fnFinalizar(data) {
     if (data.error == "") {
         document.querySelector("#resultado").innerHTML = data.mensaje;
-        formUsuario.reset();
 
         obtenerUsuarios();
         usrModal.hide();
+
+        setTimeout(function(){
+            formUsuario.reset();
+        }, 1000);
     }
     else {
         document.querySelector("#resultado").innerHTML = "Error al guardar datos: " + data.mensaje;
