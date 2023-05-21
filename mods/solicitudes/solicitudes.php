@@ -120,7 +120,7 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="tabDatosContent">
-                    <div class="tab-pane fade show active" id="trabajo-tab-pane" role="tabpanel" aria-labelledby="trabajo-tab" tabindex="0">
+                    <div class="tab-pane fade show active" style="min-height: 140px;" id="trabajo-tab-pane" role="tabpanel" aria-labelledby="trabajo-tab" tabindex="0">
                         <div class="row mt-2">
                             <div class="col">Lugar de trabajo
                                 <strong>
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="referencia-tab-pane" role="tabpanel" aria-labelledby="referencia-tab" tabindex="0">
+                    <div class="tab-pane fade" style="min-height: 140px;" id="referencia-tab-pane" role="tabpanel" aria-labelledby="referencia-tab" tabindex="0">
                         <div class="row mt-2">
                             <div class="col">Referencia personal
                                 <strong>
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="adjuntos-tab-pane" role="tabpanel" aria-labelledby="adjuntos-tab" tabindex="0">
+                    <div class="tab-pane fade" id="adjuntos-tab-pane" style="min-height: 140px;" role="tabpanel" aria-labelledby="adjuntos-tab" tabindex="0">
                         <div class="list-group mt-2">
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkConsentimiento" href="#" target="_blank">Consentimiento</a>
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkDuiFrente" href="#" target="_blank">DUI (Frente)</a>
@@ -163,7 +163,7 @@
                             <a class="list-group-item list-group-item-action list-group-item-light" id="linkRecibo" href="#" target="_blank">Recibo</a>
                         </div>
                     </div>
-                    <div class="tab-pane fade overflow-auto" style="max-height: 150px;" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab" tabindex="0">
+                    <div class="tab-pane fade overflow-auto" style="height: 140px;" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab" tabindex="0">
                         <div class="table-responsive border-top">
                             <table class="table table-sm small mt-2 " id="tableCambios" data-toggle="tableCambios">
                                 <thead>
