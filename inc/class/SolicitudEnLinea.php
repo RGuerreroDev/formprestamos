@@ -205,6 +205,67 @@ class SolicitudEnLinea
     }
     
     //-------------------------------------------
+
+    /**
+     * Obtener registros de la tabla (SOLICITUDESENLINEA) con filtros
+     * 
+     * @param void
+     * 
+     * @return array Todos los registros encontrados en la tabla
+     * 
+     * Ejemplo de uso de filtro:
+     * - $filtro = "CAMPO=0 AND CAMPO='ALGO'"
+     * 
+     */
+    public function getWithFilters(string $filtro): array
+    {
+        $this->resetPropiedades();
+
+        $sentenciaSql = "
+        SELECT
+             S.SOLICITUDENLINEAID
+            ,S.CORRELATIVO
+            ,S.FECHAHORARECEPCION
+            ,S.NOMBRES
+            ,S.APELLIDOS
+            ,S.FECHANACIMIENTO
+            ,S.TIPODOCUMENTOID
+            ,D.DOCUMENTO
+            ,S.NUMERODOCUMENTO
+            ,S.DIRECCIONDOMICILIO
+            ,S.TELEFONO
+            ,S.CORREOELECTRONICO
+            ,S.LUGARDETRABAJO
+            ,S.DIRECCIONDETRABAJO
+            ,S.TELEFONOTRABAJO
+            ,S.INGRESOMENSUAL
+            ,S.REFERENCIAPERSONAL
+            ,S.TELEFONOREFERENCIAPERSONAL
+            ,S.IMAGENFIRMA
+            ,S.SOLICITUDESTADOID
+            ,E.ESTADO
+            ,S.FECHAHORACREACION
+            ,S.FECHAHORAULTIMAMODIFICACION
+            ,S.PDFCONSENTIMIENTO
+            ,S.IMAGENDUIFRENTE
+            ,S.IMAGENDUIATRAS
+            ,S.IMAGENRECIBO
+            ,S.AUTORIZACOMPARTIRINFO
+        FROM
+            SOLICITUDESENLINEA S
+            JOIN SOLICITUDESTADOS E ON E.SOLICITUDESTADOID=S.SOLICITUDESTADOID
+            JOIN TIPOSDOCUMENTO D ON D.TIPODOCUMENTOID=S.TIPODOCUMENTOID
+        WHERE
+            $filtro
+        ORDER BY
+            FECHAHORARECEPCION DESC
+        ";
+        $datos = $this->conn->select($sentenciaSql, []);
+
+        return $datos;
+    }
+
+    //-------------------------------------------
     /**
      * Resetear a valores neutros las propiedades del objeto
      * 

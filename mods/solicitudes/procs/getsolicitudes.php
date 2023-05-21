@@ -11,8 +11,17 @@ $conn->conectar();
 
 //-----------------------------------------------
 
+$desdeFecha = $_POST["desde"];
+$estado = $_POST["estado"];
+
+//-----------------------------------------------
+
 $objSolicitudes = new SolicitudEnLinea($conn);
-$datos = $objSolicitudes->getAll();
+
+$filtros = "S.FECHAHORARECEPCION >= '$desdeFecha'";
+$filtros .= $estado == "TOD" ? "" : " AND S.SOLICITUDESTADOID = '$estado'";
+
+$datos = $objSolicitudes->getWithFilters($filtros);
 
 $datosFinales = array();
 foreach ($datos as $registro) {
@@ -25,7 +34,9 @@ foreach ($datos as $registro) {
         "estado" => $registro["ESTADO"],
         "fecharecepcion" => $registro["FECHAHORARECEPCION"]->format('d/m/Y H:i:s'),
         "trabajo" => $registro["LUGARDETRABAJO"],
-        "ingreso" => $registro["INGRESOMENSUAL"]
+        "dui" => $registro["NUMERODOCUMENTO"],
+        "telefono" => $registro["TELEFONO"],
+        "correo" => $registro["CORREOELECTRONICO"]
     );
 
     array_push($datosFinales, $nuevoRegistro);
@@ -36,6 +47,7 @@ foreach ($datos as $registro) {
 // Retornar JSON con resultado
 
 $resultado["datos"] = $datosFinales;
+$resultado["filtros"] = $filtros;
 
 echo json_encode($resultado);
 

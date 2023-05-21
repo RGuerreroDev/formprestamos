@@ -3,6 +3,10 @@
 let $table = $("#table");
 let $tableCambios = $("#tableCambios");
 
+let hoy = new Date();
+let desde = hoy.setMonth(hoy.getMonth() - 1);
+document.querySelector("#fechaDesde").valueAsDate = new Date(desde);
+
 //-----------------------------------------------
 
 function llenarTabla(data) {
@@ -11,17 +15,21 @@ function llenarTabla(data) {
 }
 
 async function obtenerSolicitudes() {
+    $table.bootstrapTable('destroy')
     $table.bootstrapTable('showLoading');
 
+    let filtros = new FormData();
+    filtros.append("desde", document.querySelector("#fechaDesde").value);
+    filtros.append("estado", document.querySelector("#filtroEstado").value);
+
     await fetch("mods/solicitudes/procs/getsolicitudes.php", {
-        method: "POST"
+        method: "POST",
+        body: filtros
     })
         .then(response => response.json())
         .then(data => llenarTabla(data.datos))
         .catch(error => console.error("Error: " + error.message));
 }
-
-obtenerSolicitudes();
 
 //-----------------------------------------------
 
@@ -40,16 +48,25 @@ async function getSolicitud(id)
         .then(data => {
             for (let atributo in data.datos)
             {
+                if (document.querySelector("#" + atributo) == null)
+                    continue;
+
                 if (atributo == "firma")
                     document.querySelector("#firma").src = "public/imgs/" + data.datos[atributo];
                 else if (atributo == "estadoId")
                     document.querySelector("#cambiarEstado").value = data.datos[atributo];
+                else if (atributo.startsWith("link"))
+                document.querySelector("#" + atributo).href = data.datos[atributo];
                 else if (atributo != "cambios")
                     document.querySelector("#" + atributo).innerHTML = data.datos[atributo];
             }
 
             $tableCambios.bootstrapTable('destroy')
             $tableCambios.bootstrapTable({ data: data.datos["cambios"] });
+
+            const triggerFirstTabEl = document.querySelector('#tabDatos li:first-child button')
+            bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
+            
             solModal.show();
         })
         .catch(error => console.error("Error: " + error.message));
@@ -75,6 +92,7 @@ window.operateEvents = {
 function crearOptions(data)
 {
     var select = document.querySelector("#cambiarEstado");
+    var filtroSelect = document.querySelector("#filtroEstado");
 
     for(var i = 0; i < data.length; i++)
     {
@@ -83,8 +101,30 @@ function crearOptions(data)
             txt = document.createTextNode(data[i].ESTADO);
         option.appendChild(txt);
         option.setAttribute("value", data[i].SOLICITUDESTADOID);
+        
         select.add(option);
     }
+
+    for(var i = 0; i < data.length; i++)
+    {
+        let
+            option = document.createElement("OPTION"),
+            txt = document.createTextNode(data[i].ESTADO);
+        option.appendChild(txt);
+        option.setAttribute("value", data[i].SOLICITUDESTADOID);
+        
+        filtroSelect.add(option);
+    }
+
+    let
+            option = document.createElement("OPTION"),
+            txt = document.createTextNode("TODAS");
+        option.appendChild(txt);
+        option.setAttribute("value", "TOD");
+        filtroSelect.add(option);
+        filtroSelect.value = "NUE";
+    
+    obtenerSolicitudes();
 }
 
 async function getEstados()
@@ -144,6 +184,15 @@ function fnFinalizar(data)
     }
 
     resModal.show();
+}
+
+//-----------------------------------------------
+
+document.querySelector("#btnFiltrar").addEventListener("click", fnFiltrar);
+
+async function fnFiltrar(event)
+{
+    obtenerSolicitudes();
 }
 
 //-----------------------------------------------

@@ -98,7 +98,42 @@ class Usuario
 
         return $datos;
     }
-    
+
+    //-------------------------------------------
+
+    /**
+     * Obtener registros de la tabla (USUARIOS) con filtros
+     * 
+     * @param void
+     * 
+     * @return array Todos los registros encontrados en la tabla
+     * 
+     * Ejemplo de uso de filtro:
+     * - $filtro = "CAMPO=0 AND CAMPO='ALGO'"
+     * 
+     */
+    public function getWithFilters(string $filtro): array
+    {
+        $this->resetPropiedades();
+
+        $sentenciaSql = "
+        SELECT
+            USUARIOID
+           ,NOMBRECOMPLETO
+           ,USUARIO
+           ,ACTIVO
+        FROM
+            USUARIOS
+        WHERE
+            $filtro
+        ORDER BY
+            USUARIO ASC 
+        ";
+        $datos = $this->conn->select($sentenciaSql, []);
+
+        return $datos;
+    }
+
     //-------------------------------------------
 
     /**
