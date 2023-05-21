@@ -29,7 +29,7 @@
                     <th data-field="dui">DUI</th>
                     <th data-field="telefono">Tel&eacute;fono</th>
                     <th data-field="correo">Correo</th>
-                    <th data-field="estado" data-formatter="estadoFormatter">Estado</th>
+                    <th data-field="estado" data-formatter="estadoFormatter" data-width="100">Estado</th>
                     <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="50"></th>
                 </tr>
             </thead>
