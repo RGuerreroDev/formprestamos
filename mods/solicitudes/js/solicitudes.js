@@ -115,9 +115,9 @@ function estadoFormatter(value) {
             break;
     }
 
-    return '<div style="color: ' + color + '">' +
+    return '<div style="color: ' + color + '"><strong>' +
         value +
-        '</div>';
+        '</strong></div>';
 }
 
 //-----------------------------------------------
