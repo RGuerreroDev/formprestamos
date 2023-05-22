@@ -104,7 +104,7 @@ function fnFinalizar(data) {
 
 //-----------------------------------------------
 
-// Para validar que se están subiendo solo archivos de tipo imagen y que cada uno no sobrepase 1MB de tamaño
+// Para validar que se están subiendo solo archivos de tipo imagen
 
 document.querySelectorAll(".uploadimage").forEach(fileInput => {
     fileInput.addEventListener("change", fnValidaImagen);
@@ -117,17 +117,6 @@ function fnValidaImagen(event) {
         var file = files[i];
         if (!file.type.startsWith("image/")) {
             alert("El archivo '" + file.name + "' no es una imagen válida.");
-            event.target.value = null;
-            return;
-        }
-    }
-
-    var maxFileSizeInBytes = 1024 * 1024; // 1MB
-
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        if (file.size > maxFileSizeInBytes) {
-            alert("El archivo '" + file.name + "' excede el tamaño máximo permitido.");
             event.target.value = null;
             return;
         }
