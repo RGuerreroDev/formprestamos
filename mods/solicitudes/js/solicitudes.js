@@ -238,12 +238,7 @@ function fnFinalizar(data) {
         formSolicitud.reset();
         getSolicitud(data.id);
 
-        $table.bootstrapTable('updateCellByUniqueId', {
-            id: data.id,
-            field: 'estado',
-            value: data.estado,
-            reinit: false
-        })
+        obtenerSolicitudes();
     }
     else {
         document.querySelector("#resultado").innerHTML = "Error al guardar cambios.";
