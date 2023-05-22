@@ -1,5 +1,14 @@
 //-----------------------------------------------
 
+const canvasFirma = document.querySelector("#canvasFirma");
+const signaturePad = new SignaturePad(canvasFirma);
+
+document.querySelector("#btnLimpiarFirma").addEventListener("click", (event) => {
+    signaturePad.clear();
+});
+
+//-----------------------------------------------
+
 // Modal de respuesta de datos guardados
 let
     resModal = new bootstrap.Modal(document.querySelector("#resModal")),
@@ -49,7 +58,7 @@ async function fnSubmit(event) {
     }
 
     // Validación para asegurar que se ha dibujado una firma
-    if (canvasEstaVacia()) {
+    if (signaturePad.isEmpty()) {
         alert("Debe agregar firma al formulario para enviar la solicitud.");
         return;
     }
@@ -79,7 +88,7 @@ function fnFinalizar(data) {
         
         formPrestamo.classList.remove('was-validated');
         document.querySelector("#btnSolicitar").disabled = false;
-        limpiarCanvas();
+        signaturePad.clear();
         downloadFile(data.datos[3], "consentimiento.pdf");
 
         setTimeout(function(){
