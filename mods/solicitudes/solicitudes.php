@@ -22,12 +22,12 @@
                 <tr>
                     <th data-field="id" data-visible="false">id</th>
                     <th data-field="correlativo" data-width="80">Correlativo</th>
-                    <th data-field="fecharecepcion">Fecha de recepci&oacute;n</th>
+                    <th data-field="fecharecepcion" data-width="130">Fecha de recepci&oacute;n</th>
                     <th data-field="apellidos">Apellidos</th>
                     <th data-field="nombres">Nombres</th>
                     <th data-field="trabajo">Lugar de trabajo</th>
-                    <th data-field="dui">DUI</th>
-                    <th data-field="telefono">Tel&eacute;fono</th>
+                    <th data-field="dui" data-width="100">DUI</th>
+                    <th data-field="telefono" data-width="100">Tel&eacute;fono</th>
                     <th data-field="correo">Correo</th>
                     <th data-field="estado" data-formatter="estadoFormatter" data-width="100">Estado</th>
                     <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="50"></th>
