@@ -28,9 +28,9 @@
                     <th data-field="trabajo">Lugar de trabajo</th>
                     <th data-field="dui" data-width="100">DUI</th>
                     <th data-field="telefono" data-width="100">Tel&eacute;fono</th>
-                    <th data-field="correo">Correo</th>
+                    <th data-field="correo" data-width="230">Correo</th>
                     <th data-field="estado" data-formatter="estadoFormatter" data-width="100">Estado</th>
-                    <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="50"></th>
+                    <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="30"></th>
                 </tr>
             </thead>
         </table>
