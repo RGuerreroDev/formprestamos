@@ -1,7 +1,7 @@
 <?php
 //-----------------------------------------------
 
-define("APP_TITULO", "[Nombre de App]");
+define("APP_TITULO", "Solicitudes de Consentimiento");
 
 //-----------------------------------------------
 

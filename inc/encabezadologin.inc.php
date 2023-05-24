@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitudes de pr&eacute;stamo</title>
+    <title><?= APP_TITULO ?></title>
 
     <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./libs/bootstrap-table/bootstrap-table.min.css">
@@ -15,9 +15,9 @@
         <div class="container">
             <div class="navbar-brand d-flex align-items-center">
                <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
-                    <img src="imgs/lacuracaomini.png" style="max-width: 40px;">
+                    <img src="imgs/tulogo.jpg" style="max-width: 40px;">
                 </span>
-                <span>Solicitudes de pr&eacute;stamo</span>
+                <span><?= APP_TITULO ?></span>
             </div>
         </div>
     </nav>
